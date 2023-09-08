@@ -25,7 +25,7 @@
 					</div>
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
-							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
+							<h1 class="fs-4 card-title fw-bold mb-4">Registro</h1>
 							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="name">Nombre Completo</label>
@@ -34,7 +34,11 @@
 
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="name">RUN</label>
-									<input id="name" type="text" class="form-control" name="name" value="" required autofocus>
+									<div class="input-group">
+										<input id="run_1" type="number" class="form-control" name="run_1" value="" required autofocus style="width: 70%;">
+										<span style="width: 10px; text-align: center;">-</span> <!-- Guion y separación -->
+										<input id="run_2" type="text" class="form-control" name="run_2" value="" required autofocus style="width: 20%;" maxlength="1">
+									</div>
 								</div>
 								
 								<div class="mb-3">
@@ -46,6 +50,47 @@
 								</div>
 
 								<div class="mb-3">
+									<label class="mb-2 text-muted" for="name">Dirección</label>
+									<input id="direccion" type="text" class="form-control" name="direccion" value="" required autofocus>
+								</div>
+								
+								<div class="mb-3">
+									<label for="comuna">Comuna:</label>
+									<input type="text" id="comuna" name="comuna">
+								</div>
+						
+								<div class="mb-3">
+									<label for="provincia">Provincia:</label>
+									<input type="text" id="provincia" name="provincia">
+								</div>
+						
+								<div class="mb-3">
+									<label for="region">Región:</label>
+									<input type="text" id="region" name="region">
+								</div>
+						
+								<div class="mb-3">
+									<label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+									<input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+								</div>
+						
+								<div class="mb-3">
+									<label>Sexo:</label>
+									<input type="radio" id="sexo_masculino" name="sexo" value="Masculino">
+									<label for="sexo_masculino">Masculino</label>
+									<input type="radio" id="sexo_femenino" name="sexo" value="Femenino">
+									<label for="sexo_femenino">Femenino</label>
+								</div>
+								
+
+
+								<div class="mb-3">
+									<label for="telefono">Número Telefónico:</label>
+									<input type="tel" id="telefono" name="telefono">
+								</div>
+
+
+								<div class="mb-3">
 									<label class="mb-2 text-muted" for="password">Password</label>
 									<input id="password" type="password" class="form-control" name="password" required>
 								    <div class="invalid-feedback">
@@ -53,13 +98,10 @@
 							    	</div>
 								</div>
 
-								<p class="form-text text-muted mb-3">
-									By registering you agree with our terms and condition.
-								</p>
 
 								<div class="align-items-center d-flex">
 									<button type="submit" class="btn btn-primary ms-auto">
-										Register	
+										Registrar	
 									</button>
 								</div>
 							</form>
