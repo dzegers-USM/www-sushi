@@ -17,98 +17,136 @@
 	<section class="h-100">
 		<div class="container h-100">
 			<div class="row justify-content-sm-center h-100">
-				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-					<div class="text-center mt-5 mb-2">
+				<div class="col-xxl-8 col-xl-10 col-lg-10 col-md-12 col-sm-12">
+					<div class="text-center mt-2 mb-2">
 						<a href="../index.html">
 							<img src="../images/png_sushi_2.png" alt="logo" width="200">
 						</a>
 					</div>
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
-							<h1 class="fs-4 card-title fw-bold mb-4">Registro</h1>
-							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
-								<div class="mb-3">
-									<label class="mb-2 text-muted" for="name">Nombre Completo</label>
-									<input id="name" type="text" class="form-control" name="name" value="" required autofocus>
-								</div>
+							<h1 class="fs-4 card-title fw-bold mb-4">Crear cuenta</h1>
+							<form action="../index.html" method="post">
+								<div class="row justify-content-sm-center h-100">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-10 col-sm-10">
 
-								<div class="mb-3">
-									<label class="mb-2 text-muted" for="name">RUN</label>
-									<div class="input-group">
-										<input id="run_1" type="number" class="form-control" name="run_1" value="" required autofocus style="width: 70%;">
-										<span style="width: 10px; text-align: center;">-</span> <!-- Guion y separación -->
-										<input id="run_2" type="text" class="form-control" name="run_2" value="" required autofocus style="width: 20%;" maxlength="1">
-									</div>
-								</div>
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="name">Nombre Completo</label>
+                                            <input id="name" type="text" class="form-control" name="name" value="" required autofocus>
+                                        </div>
+        
+                                        
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="email">E-Mail Address</label>
+                                            <input id="email" type="email" class="form-control" name="email" value="" required>
+                                            <div class="invalid-feedback">
+                                                Email invalido
+                                            </div>
+                                        </div>
+        
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="direccion">Dirección</label>
+                                            <input id="direccion" type="text" class="form-control" name="direccion" value="" required autofocus>
+                                        </div>
+        
+                                        
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="provincia">Provincia</label>
+                                            <input id="provincia" type="text" class="form-control" name="provincia" value="" required autofocus>
+                                        </div>
+
+                                        
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="telefono">Número Telefónico</label>
+                                            <input id="telefono" type="number" class="form-control" name="telefono" value="" required autofocus>
+                                        </div>
+        
+
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="password">Contraseña</label>
+                                            <input id="password" type="password" class="form-control" name="password" required>
+                                            <div class="invalid-feedback">
+                                                Password is required
+                                            </div>
+                                        </div>
+
+                                    </div>
 								
-								<div class="mb-3">
-									<label class="mb-2 text-muted" for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required>
-									<div class="invalid-feedback">
-										Email is invalid
-									</div>
-								</div>
+                                    
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-10 col-sm-10">
 
-								<div class="mb-3">
-									<label class="mb-2 text-muted" for="name">Dirección</label>
-									<input id="direccion" type="text" class="form-control" name="direccion" value="" required autofocus>
-								</div>
+                                        
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="name">RUN</label>
+                                            <div class="input-group">
+                                                <input id="run_1" type="number" class="form-control" name="run_1" value="" required autofocus style="width: 70%;">
+                                                <span style="width: 10px; text-align: center;" class="mx-1">-</span> <!-- Guion y separación -->
+                                                <input id="run_2" type="number" class="form-control" name="run_2" value="" required autofocus style="width: 18%;" maxlength="1">
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="sexo">Sexo</label>
+                                            <select id="sexo" name="sexo" class="form-control">
+                                                <option value="" disabled selected>Seleccione una opción</option>
+                                                <option value="masculino">Masculino</option>
+                                                <option value="femenino">Femenino</option>
+                                                <option value="otro">Otro</option>
+                                                <option value="otro">Prefiero no decirlo</option>
+                                            </select>
+                                        </div>
+
+                                        
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="comuna">Comuna</label>
+                                            <input id="comuna" type="text" class="form-control" name="comuna" value="" required autofocus>
+                                        </div>
+
+                                        
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="region">Región</label>
+                                            <input id="region" type="text" class="form-control" name="region" value="" required autofocus>
+                                        </div>
+                                
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                            <input id="fecha_nacimiento" type="date" class="form-control" name="fecha_nacimiento" value="" required autofocus>
+                                        </div>
+                                
+                                        
+        
+        
+                                        
+
+                                        <div class="mb-3">
+                                            <label class="mb-2 text-muted" for="confirm_password">Confirmar contraseña</label>
+                                            <input id="confirm_password" type="password" class="form-control" name="confirm_password" required>
+                                            <div class="invalid-feedback">
+                                                Por favor, confirma tu contraseña.
+                                            </div>
+                                        </div>
+        
+                                    </div>
+
 								
-								<div class="mb-3">
-									<label for="comuna">Comuna:</label>
-									<input type="text" id="comuna" name="comuna">
-								</div>
-						
-								<div class="mb-3">
-									<label for="provincia">Provincia:</label>
-									<input type="text" id="provincia" name="provincia">
-								</div>
-						
-								<div class="mb-3">
-									<label for="region">Región:</label>
-									<input type="text" id="region" name="region">
-								</div>
-						
-								<div class="mb-3">
-									<label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-									<input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
-								</div>
-						
-								<div class="mb-3">
-									<label>Sexo:</label>
-									<input type="radio" id="sexo_masculino" name="sexo" value="Masculino">
-									<label for="sexo_masculino">Masculino</label>
-									<input type="radio" id="sexo_femenino" name="sexo" value="Femenino">
-									<label for="sexo_femenino">Femenino</label>
-								</div>
-								
 
 
-								<div class="mb-3">
-									<label for="telefono">Número Telefónico:</label>
-									<input type="tel" id="telefono" name="telefono">
+
 								</div>
 
 
-								<div class="mb-3">
-									<label class="mb-2 text-muted" for="password">Password</label>
-									<input id="password" type="password" class="form-control" name="password" required>
-								    <div class="invalid-feedback">
-								    	Password is required
-							    	</div>
-								</div>
+                                <div class="align-items-center d-flex mt-4">
+                                    <button type="submit" class="btn btn-success ms-auto" href="../index.html">
+                                        Registrar	
+                                    </button>
+                                </div>
 
-
-								<div class="align-items-center d-flex">
-									<button type="submit" class="btn btn-primary ms-auto">
-										Registrar	
-									</button>
-								</div>
 							</form>
 						</div>
 						<div class="card-footer py-3 border-0">
 							<div class="text-center">
-								Tienes cuenta? <a href="index.html" >Login</a>
+								¿Ya tienes cuenta? <a href="index.html" >Iniciar Sesión</a>
 							</div>
 						</div>
 					</div>
@@ -116,5 +154,21 @@
 			</div>
 		</div>
 	</section>
+
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            const password = form.querySelector('#password').value;
+            const confirmPassword = form.querySelector('#confirm_password').value;
+
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
+            }
+        });
+    });
+</script>
 </html>
