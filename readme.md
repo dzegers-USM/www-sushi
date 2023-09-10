@@ -16,6 +16,7 @@ Nota: [Sass](https://sass-lang.com/) es una extensión de CSS que otorga funcion
 Ya que este es un sitio estático, basta abrir un archivo .html en el navegador para previsualizar los cambios.
 
 Al crear nuevos archivos .html, se recomienda copiar este template:
+
 ```
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -25,6 +26,7 @@ Al crear nuevos archivos .html, se recomienda copiar este template:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="nav.css">
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -35,3 +37,5 @@ Al crear nuevos archivos .html, se recomienda copiar este template:
 </body>
 </html>
 ```
+
+Nota: Aquí se utilizan los archivos "main.css" y "nav.css". Al trabajar de un subdirectorio, el camino relativo de estos puede cambiar (un nivel más abajo, se pueden acceder mediante "../main.css" y "../nav.css").
