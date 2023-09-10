@@ -1,5 +1,6 @@
 ### Instalación
-Descargar dependencias
+Descargar dependencias:
+
 `npm install`
 (Require node.js)
 
