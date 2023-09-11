@@ -1,0 +1,43 @@
+@import "../../node_modules/daterangepicker/daterangepicker.css";
+
+/* Darker Daterange Picker */
+
+$primary: crimson;
+
+.btn-card-apply {
+  border-radius: 0 0 4px 4px ;
+}
+
+.daterangepicker td.off, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date, .daterangepicker td.off.end-date {
+  background-color: transparent;
+  color: rgba(200,200,200,0.5);
+}
+.daterangepicker {
+  background-color: inherit;
+  color: #ebf4f0;
+}
+
+.daterangepicker .calendar-table {
+  background-color: transparent;
+}
+
+.datepicker.dropdown-menu table  {
+  background-color: transparent;
+}
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: $primary;
+  color: #ebf4f8;
+}
+.daterangepicker td.in-range {
+  background-color: rgba(37,47,57,0.9);
+  color: #ebf4f8;
+}
+.daterangepicker select.monthselect {
+  color: rgba(37,47,57,0.9);
+}
+.daterangepicker select.yearselect {
+  color: rgba(37,47,57,0.9);
+}
+.daterangepicker .input-mini {
+  color: #ebf4f8;
+}
