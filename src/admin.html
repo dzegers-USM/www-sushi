@@ -11,6 +11,7 @@
   <title>WWWW Sushi Admin</title>
 </head>
 <body>
+<div class="d-flex flex-column min-vh-100">
   <nav class="navbar navbar-expand-sm bg-primary mb-2">
     <div class="container-lg">
       <a class="navbar-brand" href="index.html"> 
@@ -19,11 +20,8 @@
       </a>
     </div>
   </nav>
-  <div class="container-lg ">
-    <div class="mt-5">
-      <h1>Crear Usuarios</h1>
-
-    </div >
+  <div class="container-lg flex-fill">
+    <h1>Crear Usuarios</h1>
     <!-- Formulario para crear un nuevo usuario -->
     <form id="userForm" class="mt-5">
       <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
@@ -193,5 +191,12 @@
       userForm.reset();
     });
   </script>
+
+  <div class="bg-secondary">
+    <div class="container">
+      Footer
+    </div>
+  </div>
+</div>
 </body>
 </html>
