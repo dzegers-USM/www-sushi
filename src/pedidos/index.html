@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../main.css">
+	<link rel="stylesheet" href="../index.css">
+	<link rel="stylesheet" href="../nav.css">
+
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>WWWW Sushi</title>
+  </head>
+<body>
+	<nav class="navbar navbar-expand-sm bg-primary mb-2">
+		<div class="container-lg">
+		  <!-- <a class="navbar-brand" href="#">Fukusuke Sushi</a> -->
+		  <a class="navbar-brand" href="#">
+			<img class="nav-logo-fukusuke" src="../images/png_sushi_2.png" alt="Fukusuke Sushi" height="64">
+			Fukusuke Sushi
+		  </a>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+			  <li class="nav-item">
+				<a class="nav-link " href="../index.html">Inicio</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#">Pedidos</a>
+			  </li>
+			</ul>
+			<ul class="navbar-nav mb-2 mb-lg-0 ml-auto">
+			  <li class="nav-item">
+				<a class="nav-link" href="../login/index.html">Iniciar Sesión</a>
+			  </li>
+			</ul>
+		  </div>
+		</div>
+	  </nav>
+
+	<div class="container mt-5">
+		<div class="accordion" id="accordion">
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+						N° de pedido 98525 Cliente:Juan Labbe Direccion: Los alerces 2460 Hora: 6:50
+					</button>
+				</h2>
+				<div id="collapse1" class="collapse" data-parent="#accordion">
+					<div class="accordion-body">
+						<div class="card border border-0">
+							<div class="card-body">
+								<ul>
+									<li>Nigiri x3</li>
+									<li>Roll x5</li>
+									<li>Sashimi x4</li>
+								</ul>
+								<p>
+									Estado: <span class="text-danger">Preparandose</span>
+									<span style="margin-left: 10px;">Boleta: <span class="text-danger">No emitida</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+		<div class="accordion" id="accordion2">
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+						N° de pedido 98524 Cliente:Jano Hernandez Direccion: Rapel Hora: 6:40
+					</button>
+				</h2>
+				<div id="collapse2" class="collapse" data-parent="#accordion2">
+					<div class="accordion-body">
+						<div class="card border border-0">
+							<div class="card-body">
+								<ul>
+									<li>Nigiri x2</li>
+									<li>Roll x3</li>
+									<li>Sashimi x2</li>
+								</ul>
+								<p>
+									Estado: <span class="text-warning">En Camino</span>
+									<span style="margin-left: 10px;">Boleta: <span class="text-danger">No emitida</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="accordion" id="accordion3">
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+						N° de pedido 98523 Cliente:Daniel Zegers Direccion: San Jose De La Sierra 99 Depto 109 Hora: 6:15
+					</button>
+				</h2> 
+				<div id="collapse3" class="collapse" data-parent="#accordion3">
+					<div class="accordion-body">
+						<div class="card border border-0">
+							<div class="card-body">
+								<ul>
+									<li>Nigiri </li>
+									<li>Roll x2</li>
+									<li>Sashimi</li>
+								</ul>
+								<p>
+									Estado: <span class="text-success">Entregado</span>
+									<span style="margin-left: 10px;">Boleta: <span class="text-success">Emitida</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
