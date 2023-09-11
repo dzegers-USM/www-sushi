@@ -15,43 +15,44 @@
   </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-primary mb-2">
-        <div class="container-lg">
-          <!-- <a class="navbar-brand" href="#">Fukusuke Sushi</a> -->
-          <a class="navbar-brand" href="#">
-            <img class="nav-logo-fukusuke" src="images/png_sushi_2.png" alt="Fukusuke Sushi" height="64">
-            Fukusuke Sushi
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="home.html">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-            </ul>
-    
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                  <a class="nav-link active" href="menu.html">Carta</a>
-                </li>
-            </ul>
-    
-            <ul class="navbar-nav mb-2 mb-lg-0 ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="login/index.html">Iniciar Sesión</a>
-              </li>
-            </ul>
-    
-          </div>
-        </div>
-      </nav>
+<div class="d-flex flex-column min-vh-100">
+  <nav class="navbar navbar-expand-sm bg-primary mb-2">
+    <div class="container-lg">
+      <!-- <a class="navbar-brand" href="#">Fukusuke Sushi</a> -->
+      <a class="navbar-brand" href="#">
+        <img class="nav-logo-fukusuke" src="images/png_sushi_2.png" alt="Fukusuke Sushi" height="64">
+        Fukusuke Sushi
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="home.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        </ul>
 
-  <div class="container-lg">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" href="menu.html">Carta</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav mb-2 mb-lg-0 ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="login/index.html">Iniciar Sesión</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-lg flex-fill">
     <div id="carouselFeatured" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselFeatured" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -453,70 +454,67 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary">Añadir al Carrito</button>
                             </div>
-                            
                         </div>
                         </div>
                 </div>
-
-                
-                
             </div>
             </div>
         </div>
         <div class="col-sm-3">
-            <div class="card">
-                <img class="card-img-top" src="images/menu13.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
-                <div class="card-body">
-                    <h5 class="card-title">Strawberry Roll</h5>
-                    <p class="card-text">$10.000</p>
-                    <!-- Button trigger modal -->
-                    
-                    <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#myModal8">Detalles</button>
-                    <a href="#" class="btn btn-primary btn-lg float-end">+</a>
-                    
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Detalles</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="card-img-top" src="images/menu13.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
-        
-                                    <div class="product-info padding-top">
-                                        <div class="product-text-container">
-                                            <div class="text-container">
-                                                <div class="title-container">
-                                                    <h4 class="product-title ng-binding">Strawberry Roll</h4>
-                                                    <p class="product-description portion ng-binding">(8 porciones)</p>
-                                                </div>
-                                                <div class="title-container">
-                                                    <h4 class="text-end" margin-right: auto;>$10.000</h4>
-                                                </div>
-                                            </div>
-                                            <div class="text-container">
-                                                <p class="product-description ng-binding">Palmito, champignon, palta, pepino, envuelto en palta, sin arroz</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Añadir al Carrito</button>
-                                </div>
-                            
-                            </div>
-                        </div>
+          <div class="card">
+            <img class="card-img-top" src="images/menu13.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+            <div class="card-body">
+              <h5 class="card-title">Strawberry Roll</h5>
+              <p class="card-text">$10.000</p>
+              <!-- Button trigger modal -->
+              
+              <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#myModal8">Detalles</button>
+              <a href="#" class="btn btn-primary btn-lg float-end">+</a>
+                
+              <!-- Modal -->
+              <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Detalles</h5>
                     </div>
-        
-                    
-                    
-                </div>
-            </div>
-    </div>
-        
-    
+                    <div class="modal-body">
+                      <img class="card-img-top" src="images/menu13.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
 
+                      <div class="product-info padding-top">
+                        <div class="product-text-container">
+                          <div class="text-container">
+                            <div class="title-container">
+                              <h4 class="product-title ng-binding">Strawberry Roll</h4>
+                              <p class="product-description portion ng-binding">(8 porciones)</p>
+                            </div>
+                            <div class="title-container">
+                              <h4 class="text-end" margin-right: auto;>$10.000</h4>
+                            </div>
+                          </div>
+                          <div class="text-container">
+                            <p class="product-description ng-binding">Palmito, champignon, palta, pepino, envuelto en palta, sin arroz</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Añadir al Carrito</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+    
+  <div class="bg-secondary">
+    <div class="container">
+      Footer
+    </div>
+  </div>
+</div>
 </body>
 
 </html>

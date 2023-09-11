@@ -20,6 +20,7 @@
     <title>WWWW Sushi</title>
   </head>
 <body>
+<div class="d-flex flex-column min-vh-100">
   <nav class="navbar navbar-expand-sm bg-primary mb-2">
     <div class="container-lg">
       <a class="navbar-brand" href="index.html">
@@ -46,7 +47,7 @@
       </div>
     </div>
   </nav>
-  <div class="container d-flex gap-5">
+  <div class="container d-flex flex-fill gap-5">
     <div class="d-flex gap-5 w-100">
       <div>
         <div class="card">
@@ -73,7 +74,7 @@
           </button>
         </div>
       </div>
-  
+
       <div class="flex-grow-1">
         <canvas id="myChart"></canvas>
       </div>
@@ -97,7 +98,7 @@
           options: {
             elements: {
               line: {
-                tension: 0.15
+                tension: 0.2
               }
             },
             scales: {
@@ -110,5 +111,11 @@
       </script>
     </div>
   </div>
+  <div class="bg-secondary">
+    <div class="container">
+      Footer
+    </div>
+  </div>
+</div>
 </body>
 </html>
