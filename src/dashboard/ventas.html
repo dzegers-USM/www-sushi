@@ -50,25 +50,27 @@
     <div class="d-flex gap-5 w-100">
       <div>
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Opciones</h5>
-            <div>Rango de consulta</div>
-            <input class="mb-2" type="text" name="daterange" value="09/10/2023 - 09/16/2023" />
-            <script>
-            $(function() {
-              $('input[name="daterange"]').daterangepicker({
-                opens: 'left'
-              }, function(start, end, label) {
-                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-              });
-            });
-            </script>
-            <div>
-              <button type="submit" class="btn btn-primary w-100" >
-                Aplicar
-              </button>
-            </div>
+          <div class="card-header pb-1">
+            <h4>Opciones</h4>
           </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div>Rango de consulta</div>
+              <input class="mb-2" type="text" name="daterange" value="09/10/2023 - 09/16/2023" />
+              <script>
+              $(function() {
+                $('input[name="daterange"]').daterangepicker({
+                  opens: 'left'
+                }, function(start, end, label) {
+                  console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                });
+              });
+              </script>
+            </li>
+          </ul>
+          <button type="submit" class="btn btn-primary w-100 btn-card-apply" >
+            Aplicar
+          </button>
         </div>
       </div>
   
@@ -87,7 +89,7 @@
               data: [8, 4, 3, 5, 2, 3, 10],
               borderWidth: 1
             }, {
-              label: 'Ganancias (miles)',
+              label: 'Ingreso (miles de pesos)',
               data: [77, 35, 27, 47, 20, 26, 90],
               borderWidth: 1,
             }]
