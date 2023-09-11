@@ -25,6 +25,9 @@ Al crear nuevos archivos .html, se recomienda copiar este template:
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- CAMINO A CARPETA "src" -->
+    <base href="">
+
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="nav.css">
 
@@ -38,4 +41,4 @@ Al crear nuevos archivos .html, se recomienda copiar este template:
 </html>
 ```
 
-Nota: Aquí se utilizan los archivos "main.css" y "nav.css". Al trabajar de un subdirectorio, el camino relativo de estos puede cambiar (un nivel más abajo, se pueden acceder mediante "../main.css" y "../nav.css").
+Nota: El tag "base" se usa para especificar la raiz desde la cual se resuelven los enlaces relativos. Colocándonos en la carpeta src, se minimizan los errores cuando, por ejemplo, se importa el navbar al código.
