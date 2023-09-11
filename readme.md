@@ -15,7 +15,7 @@ Nota: [Sass](https://sass-lang.com/) es una extensión de CSS que otorga funcion
 
 Ya que este es un sitio estático, basta abrir un archivo .html en el navegador para previsualizar los cambios.
 
-Al crear nuevos archivos .html, se recomienda copiar este template:
+Al crear nuevos archivos .html, se recomienda copiar este template (y acordando reemplazar el camino en el tag <base>):
 
 ```
 <!DOCTYPE html>
