@@ -36,7 +36,13 @@ Al crear nuevos archivos .html, se recomienda copiar este template (y acordando 
     <title>WWWW Sushi</title>
   </head>
 <body>
-  <!-- TU CONTENIDO AQUÍ -->
+  <div class="d-flex flex-column min-vh-100">
+    <!-- NAVBAR -->
+    <div class="container flex-fill">
+      <!-- TU CONTENIDO AQUÍ -->
+    </div>
+    <!-- FOOTER -->
+  </div>
 </body>
 </html>
 ```

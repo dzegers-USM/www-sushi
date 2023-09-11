@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="index.css">
+
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>WWWW Sushi</title>
+  </head>
+
+<body>
+<div class="d-flex flex-column min-vh-100">
+  <nav class="navbar navbar-expand-sm bg-primary mb-2">
+    <div class="container-lg">
+      <!-- <a class="navbar-brand" href="#">Fukusuke Sushi</a> -->
+      <a class="navbar-brand" href="#">
+        <img class="nav-logo-fukusuke" src="images/png_sushi_2.png" alt="Fukusuke Sushi" height="64">
+        Fukusuke Sushi
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="home.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        </ul>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" href="menu.html">Carta</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav mb-2 mb-lg-0 ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="login/index.html">Iniciar Sesión</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-lg flex-fill">
+    <div id="carouselFeatured" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselFeatured" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselFeatured" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselFeatured" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-center">
+            <img class="carousel-inner-img" src="images/Nigiri-acevichado.webp" alt="" height="400px">
+          </div>
+          <div class="carousel-caption">
+            <h1 class="text-light h1-shadow">Nigiri</h5>
+            <p class="text-muted">¡Prueba nuestras variedades de Nigiri!</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+            <img class="carousel-inner-img" src="images/Ebi-roll.webp" alt="" height="400px">
+          </div>
+          <div class="carousel-caption">
+            <h1 class="text-light h1-shadow">Rolls</h5>
+            <p class="text-muted">Revueltos en alga, palta, salmón, y fritos.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+            <img class="carousel-inner-img" src="images/Sashimi-salmon.webp" alt="" height="400px">
+          </div>
+          <div class="carousel-caption">
+            <h1 class="text-light h1-shadow">Sashimi</h5>
+            <p class="text-muted">Finos cortes de salmón o atún crudo.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselFeatured" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselFeatured" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+    </div>
+
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Carta</h5>
+        <h1 class="mb-5">Los Más Pedidos</h1>
+    </div>
+        
+    </div>
+    <div class="row gy-5" style="margin: 70px;padding:10px">
+        <div class="col-sm-3">
+        <div class="card">
+            <img class="card-img-top" src="images/menu1.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+            <div class="card-body">
+                <h5 class="card-title">Veggie Keto Oriental</h5>
+                <p class="card-text">$10.000</p>
+                <!-- Button trigger modal -->
+                
+                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#myModal1">Detalles</button>
+                <a href="#" class="btn btn-primary btn-lg float-end">+</a>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Detalles</h5>
+                            </div>
+                            <div class="modal-body">
+                                <img class="card-img-top" src="images/menu1.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+
+                                <div class="product-info padding-top">
+                                    <div class="product-text-container">
+                                        <div class="text-container">
+                                            <div class="title-container">
+                                                <h3>
+                                                    Veggie Keto Oriental
+                                                    <small class="text-muted">8 Porciones</small>
+                                                </h3>
+                                            </div>
+                                            <div class="title-container">
+                                                <h4 class="text-end" margin-right: auto;>$10.000</h4>
+                                            </div>
+                                        </div>
+                                        <div class="text-container">
+                                            <p class="product-description ng-binding">Palmito, champignon, palta, pepino, envuelto en palta, sin arroz</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Añadir al Carrito</button>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <img class="card-img-top" src="images/menu6.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+            <div class="card-body">
+                <h5 class="card-title">Cheese Roll</h5>
+                <p class="card-text">$10.000</p>
+                <!-- Button trigger modal -->
+                
+                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#myModal2">Detalles</button>
+                <a href="#" class="btn btn-primary btn-lg float-end">+</a>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Detalles</h5>
+                            </div>
+                            <div class="modal-body">
+                                <img class="card-img-top" src="images/menu6.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+    
+                                <div class="product-info padding-top">
+                                    <div class="product-text-container">
+                                        <div class="text-container">
+                                            <div class="title-container">
+                                                <h4 class="product-title ng-binding">Cheese Roll</h4>
+                                                <p class="product-description portion ng-binding">(8 porciones)</p>
+                                            </div>
+                                            <div class="title-container">
+                                                <h4 class="text-end" margin-right: auto;>$10.000</h4>
+                                            </div>
+                                        </div>
+                                        <div class="text-container">
+                                            <p class="product-description ng-binding">Palmito, champignon, palta, pepino, envuelto en palta, sin arroz</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Añadir al Carrito</button>
+                            </div>
+                            
+                        </div>
+                        </div>
+                </div>
+    
+                
+                
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <img class="card-img-top" src="images/menu8.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+            <div class="card-body">
+                <h5 class="card-title">Samurai Roll</h5>
+                <p class="card-text">$10.000</p>
+                <!-- Button trigger modal -->
+                
+                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#myModal3">Detalles</button>
+                <a href="#" class="btn btn-primary btn-lg float-end">+</a>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Detalles</h5>
+                            </div>
+                            <div class="modal-body">
+                                <img class="card-img-top" src="images/menu8.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+    
+                                <div class="product-info padding-top">
+                                    <div class="product-text-container">
+                                        <div class="text-container">
+                                            <div class="title-container">
+                                                <h4 class="product-title ng-binding">Samurai Roll</h4>
+                                                <p class="product-description portion ng-binding">(8 porciones)</p>
+                                            </div>
+                                            <div class="title-container">
+                                                <h4 class="text-end" margin-right: auto;>$10.000</h4>
+                                            </div>
+                                        </div>
+                                        <div class="text-container">
+                                            <p class="product-description ng-binding">Palmito, champignon, palta, pepino, envuelto en palta, sin arroz</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Añadir al Carrito</button>
+                            </div>
+                            
+                        </div>
+                        </div>
+                </div>
+    
+                
+                
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <img class="card-img-top" src="images/menu9.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+                <div class="card-body">
+                    <h5 class="card-title">Cheese Tempura</h5>
+                    <p class="card-text">$10.000</p>
+                    <!-- Button trigger modal -->
+                    
+                    <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#myModal4">Detalles</button>
+                    <a href="#" class="btn btn-primary btn-lg float-end">+</a>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Detalles</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <img class="card-img-top" src="images/menu9.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+        
+                                    <div class="product-info padding-top">
+                                        <div class="product-text-container">
+                                            <div class="text-container">
+                                                <div class="title-container">
+                                                    <h4 class="product-title ng-binding">Cheese Tempura</h4>
+                                                    <p class="product-description portion ng-binding">(8 porciones)</p>
+                                                </div>
+                                                <div class="title-container">
+                                                    <h4 class="text-end" margin-right: auto;>$10.000</h4>
+                                                </div>
+                                            </div>
+                                            <div class="text-container">
+                                                <p class="product-description ng-binding">Palmito, champignon, palta, pepino, envuelto en palta, sin arroz</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Añadir al Carrito</button>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+        
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+        <div class="card">
+            <img class="card-img-top" src="images/menu10.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+            <div class="card-body">
+                <h5 class="card-title">Sashimi Tempura Atún</h5>
+                <p class="card-text">$10.000</p>
+                <!-- Button trigger modal -->
+                
+                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#myModal5">Detalles</button>
+                <a href="#" class="btn btn-primary btn-lg float-end">+</a>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Detalles</h5>
+                            </div>
+                            <div class="modal-body">
+                                <img class="card-img-top" src="images/menu10.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+
+                                <div class="product-info padding-top">
+                                    <div class="product-text-container">
+                                        <div class="text-container">
+                                            <div class="title-container">
+                                                <h4 class="product-title ng-binding">Sashimi Tempura Atún</h4>
+                                                <p class="product-description portion ng-binding">(8 porciones)</p>
+                                            </div>
+                                            <div class="title-container">
+                                                <h4 class="text-end" margin-right: auto;>$10.000</h4>
+                                            </div>
+                                        </div>
+                                        <div class="text-container">
+                                            <p class="product-description ng-binding">Palmito, champignon, palta, pepino, envuelto en palta, sin arroz</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Añadir al Carrito</button>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <img class="card-img-top" src="images/menu11.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+            <div class="card-body">
+                <h5 class="card-title">Sashimi Atún</h5>
+                <p class="card-text">$10.000</p>
+                <!-- Button trigger modal -->
+                
+                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#myModal6">Detalles</button>
+                <a href="#" class="btn btn-primary btn-lg float-end">+</a>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Detalles</h5>
+                            </div>
+                            <div class="modal-body">
+                                <img class="card-img-top" src="images/menu11.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+
+                                <div class="product-info padding-top">
+                                    <div class="product-text-container">
+                                        <div class="text-container">
+                                            <div class="title-container">
+                                                <h4 class="product-title ng-binding">Sashimi Atún</h4>
+                                                <p class="product-description portion ng-binding">(8 porciones)</p>
+                                            </div>
+                                            <div class="title-container">
+                                                <h4 class="text-end" margin-right: auto;>$10.000</h4>
+                                            </div>
+                                        </div>
+                                        <div class="text-container">
+                                            <p class="product-description ng-binding">Palmito, champignon, palta, pepino, envuelto en palta, sin arroz</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Añadir al Carrito</button>
+                            </div>
+                            
+                        </div>
+                        </div>
+                </div>
+
+                
+                
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <img class="card-img-top" src="images/menu12.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+            <div class="card-body">
+                <h5 class="card-title">Tropical Roll</h5>
+                <p class="card-text">$10.000</p>
+                <!-- Button trigger modal -->
+                
+                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#myModal7">Detalles</button>
+                <a href="#" class="btn btn-primary btn-lg float-end">+</a>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Detalles</h5>
+                            </div>
+                            <div class="modal-body">
+                                <img class="card-img-top" src="images/menu12.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+
+                                <div class="product-info padding-top">
+                                    <div class="product-text-container">
+                                        <div class="text-container">
+                                            <div class="title-container">
+                                                <h4 class="product-title ng-binding">Tropical Roll</h4>
+                                                <p class="product-description portion ng-binding">(8 porciones)</p>
+                                            </div>
+                                            <div class="title-container">
+                                                <h4 class="text-end" margin-right: auto;>$10.000</h4>
+                                            </div>
+                                        </div>
+                                        <div class="text-container">
+                                            <p class="product-description ng-binding">Palmito, champignon, palta, pepino, envuelto en palta, sin arroz</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Añadir al Carrito</button>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <img class="card-img-top" src="images/menu13.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+            <div class="card-body">
+              <h5 class="card-title">Strawberry Roll</h5>
+              <p class="card-text">$10.000</p>
+              <!-- Button trigger modal -->
+              
+              <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#myModal8">Detalles</button>
+              <a href="#" class="btn btn-primary btn-lg float-end">+</a>
+                
+              <!-- Modal -->
+              <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Detalles</h5>
+                    </div>
+                    <div class="modal-body">
+                      <img class="card-img-top" src="images/menu13.webp" alt="Card image cap"  style="width: 15rem; display: block; margin-left: auto; margin-right: auto;" >
+
+                      <div class="product-info padding-top">
+                        <div class="product-text-container">
+                          <div class="text-container">
+                            <div class="title-container">
+                              <h4 class="product-title ng-binding">Strawberry Roll</h4>
+                              <p class="product-description portion ng-binding">(8 porciones)</p>
+                            </div>
+                            <div class="title-container">
+                              <h4 class="text-end" margin-right: auto;>$10.000</h4>
+                            </div>
+                          </div>
+                          <div class="text-container">
+                            <p class="product-description ng-binding">Palmito, champignon, palta, pepino, envuelto en palta, sin arroz</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Añadir al Carrito</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+    
+  <div class="bg-secondary">
+    <div class="container">
+      Footer
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
