@@ -11971,3 +11971,14 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.form-control {
+  background-color: #54657d;
+  color: #fff;
+  border: 0;
+}
+.form-control:focus {
+  background-color: #60738e;
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 0 0 0.1rem rgb(180, 206, 233, 0.5);
+}
