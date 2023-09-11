@@ -21,7 +21,7 @@
 <body>
 	<nav class="navbar navbar-expand-sm bg-primary mb-2">
     <div class="container-lg">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="index.html">
         <img class="nav-logo-fukusuke" src="images/png_sushi_2.png" alt="Fukusuke Sushi" height="64">
         Fukusuke Sushi
       </a>
@@ -31,10 +31,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="index.html">Link</a>
           </li>
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0 ml-auto">
@@ -46,114 +46,78 @@
     </div>
   </nav>
 	
-	<div class="container tm-mt-big tm-mb-big">
-      <div class="row">
-        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
-          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-            <div class="row">
-              <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Agregar Producto</h2>
-              </div>
-            </div>
-            <div class="row tm-edit-product-row">
-              <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="" class="tm-edit-product-form">
-                  <div class="form-group mb-3">
-                    <label
-                      for="name"
-                      >Nombre del producto
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      class="form-control validate"
-                      required
-                    />
-                  </div>
-                  <div class="form-group mb-3">
-                    <label
-                      for="description"
-                      >Descripción</label
-                    >
-                    <textarea
-                      class="form-control validate"
-                      rows="3"
-                      required
-                    ></textarea>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label
-                      for="category"
-                      >Categoría</label
-                    >
-                    <select
-                      class="custom-select tm-select-accounts"
-                      id="category"
-                    >
-                      <option selected>Elegir categoría</option>
-                      <option value="1">New Arrival</option>
-                      <option value="2">Most Popular</option>
-                      <option value="3">Trending</option>
-                    </select>
-                  </div>
-                  <div class="row">
-                      <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          Fecha de expiración
-                          <input class="mb-2" type="text" name="daterange" value="09/10/2023" />
-                          <script>
-                          $(function() {
-                            $('input[name="daterange"]').daterangepicker({
-                              singleDatePicker: true,
-                              opens: 'left'
-                            }, function(start, end, label) {
-                              console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-                            });
-                          });
-                          </script>
-                        </div>
-                        <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="stock"
-                            >Unidades en stock
-                          </label>
-                          <input
-                            id="stock"
-                            name="stock"
-                            type="text"
-                            class="form-control validate"
-                            required
-                          />
-                        </div>
-                  </div>
-                  
-              </div>
-              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                <div class="tm-product-img-dummy mx-auto">
-                  <i
-                    class="fas fa-cloud-upload-alt tm-upload-icon"
-                    onclick="document.getElementById('fileInput').click();"
-                  ></i>
-                </div>
-                <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" type="file" style="display:none;" />
-                  <input
-                    type="button"
-                    class="btn btn-primary btn-block mx-auto"
-                    value="SUBIR IMAGEN DEL PRODUCTO"
-                    onclick="document.getElementById('fileInput').click();"
-                  />
-                </div>
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">GUARDAR PRODUCTO</button>
-              </div>
-            </form>
-            </div>
-          </div>
+  <div class="container max-width-sm">
+    <h2>Nuevo producto</h2>
+    <div class="form-group mb-3">
+      <label
+        for="name"
+      >
+        Nombre
+      </label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        class="form-control validate"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label
+        for="description"
+        >Descripción</label
+      >
+      <textarea
+        class="form-control validate"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+    <div class="row">
+      <div class="col lg-6">
+        <div class="tm-product-img-dummy mx-auto">
+          <i
+            class="fas fa-cloud-upload-alt tm-upload-icon"
+            onclick="document.getElementById('fileInput').click();"
+          ></i>
+        </div>
+        <div class="custom-file mb-3">
+          <label>
+            Imagen
+          </label>
+          <input class="d-none" id="fileInput" type="file"/>
+          <input
+            type="button"
+            class="btn btn-primary w-100"
+            value="Subir"
+            onclick="document.getElementById('fileInput').click();"
+          />
+        </div>
+      </div>
+      <div class="col lg-6">
+        <div class="form-group mb-3">
+          <label
+            for="stock"
+            >Unidades en stock
+          </label>
+          <input
+            id="stock"
+            name="stock"
+            type="text"
+            class="form-control validate"
+            required
+          />
         </div>
       </div>
     </div>
-
-  </body>
+    
+    <div class="row">
+      <div class="col d-flex justify-content-end">
+        <button type="submit" class="btn btn-success">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

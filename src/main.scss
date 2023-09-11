@@ -1,3 +1,28 @@
+@use "sass:map";
+
 $primary: crimson !default;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+.max-width-xs {
+    max-width: map-get($map: $grid-breakpoints, $key: xs);
+}
+
+.max-width-sm {
+    max-width: map-get($map: $grid-breakpoints, $key: sm);
+}
+
+.max-width-md {
+    max-width: map-get($map: $grid-breakpoints, $key: md);
+}
+
+.max-width-lg {
+    max-width: map-get($map: $grid-breakpoints, $key: lg);
+}
+
+.max-width-xl {
+    max-width: map-get($map: $grid-breakpoints, $key: xl);
+}
