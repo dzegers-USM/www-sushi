@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <base href="..">
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="dashboard/ventas.css">
+
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../node_modules/daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="../node_modules/daterangepicker/daterangepicker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>WWWW Sushi</title>
+  </head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-primary mb-2">
+    <div class="container-lg">
+      <a class="navbar-brand" href="index.html">
+        <img class="nav-logo-fukusuke" src="images/png_sushi_2.png" alt="Fukusuke Sushi" height="64">
+        Fukusuke Sushi
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Link</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mb-2 mb-lg-0 ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="login/index.html">Iniciar Sesión</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container d-flex gap-5">
+    <div class="d-flex gap-5 w-100">
+      <div>
+        <div class="card">
+          <div class="card-header pb-1">
+            <h4>Opciones</h4>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div>Rango de consulta</div>
+              <input class="mb-2" type="text" name="daterange" value="09/10/2023 - 09/16/2023" />
+              <script>
+              $(function() {
+                $('input[name="daterange"]').daterangepicker({
+                  opens: 'left'
+                }, function(start, end, label) {
+                  console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                });
+              });
+              </script>
+            </li>
+          </ul>
+          <button type="submit" class="btn btn-primary w-100 btn-card-apply" >
+            Aplicar
+          </button>
+        </div>
+      </div>
+  
+      <div class="flex-grow-1">
+        <canvas id="myChart"></canvas>
+      </div>
+      <script>
+        const ctx = document.getElementById('myChart');
+      
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['9/10', '9/11', '9/12', '9/13', '9/14', '9/15', '9/16'],
+            datasets: [{
+              label: 'Productos vendidos',
+              data: [8, 4, 3, 5, 2, 3, 10],
+              borderWidth: 1
+            }, {
+              label: 'Ingreso (miles de pesos)',
+              data: [77, 35, 27, 47, 20, 26, 90],
+              borderWidth: 1,
+            }]
+          },
+          options: {
+            elements: {
+              line: {
+                tension: 0.15
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      </script>
+    </div>
+  </div>
+</body>
+</html>

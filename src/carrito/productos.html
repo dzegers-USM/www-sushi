@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../main.css">
+
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>WWWW Sushi</title>
+  </head>
+<body>
+  
+    
+    <li class="nav-item">
+        <a class="nav-link fs-5 fw-bold active"  href="./index.html"><i class="bi bi-cart2"></i> Carrito <span id="numero-products"> 0</span></a>
+    </li>
+
+    <div class="card" style="width: 100px; height: 50px;">
+        <img src="./img/pantalones/02.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">"Pantalón 02"</h5>
+            <h6>Categoria: <span>Pantalones</span></h6>
+            <h6>Precio: <span>600</span></h6>
+    
+            <div class="d-grid gap-2">
+                <button class="btn shadow" type="button" onclick="ejecutarFuncion('pantalon-02')">Comprar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script/productos.js"></script>
+
+    <script>
+        function ejecutarFuncion(parametro) {
+            guardarProducto(parametro);
+        }
+    </script>
+    
+
+
+</body>
+</html>
