@@ -19,39 +19,42 @@
       </a>
     </div>
   </nav>
-  <div class="container-lg">
-    <h1>Crear Usuarios</h1>
+  <div class="container-lg ">
+    <div class="mt-5">
+      <h1>Crear Usuarios</h1>
+
+    </div >
     <!-- Formulario para crear un nuevo usuario -->
-    <form id="userForm">
-      <div class="mb-3">
+    <form id="userForm" class="mt-5">
+      <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
         <label for="fullName" class="form-label">Nombre Completo:</label>
         <input type="text" class="form-control" id="fullName" name="fullName" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
         <label for="rut" class="form-label">Rut:</label>
         <input type="text" class="form-control" id="rut" name="rut" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
         <label for="address" class="form-label">Dirección:</label>
         <input type="text" class="form-control" id="address" name="address" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
         <label for="comuna" class="form-label">Comuna:</label>
         <input type="text" class="form-control" id="comuna" name="comuna" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
         <label for="provincia" class="form-label">Provincia:</label>
         <input type="text" class="form-control" id="provincia" name="provincia" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
         <label for="region" class="form-label">Región:</label>
         <input type="text" class="form-control" id="region" name="region" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
         <label for="birthdate" class="form-label">Fecha de Nacimiento:</label>
         <input type="date" class="form-control" id="birthdate" name="birthdate" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
         <label for="gender" class="form-label">Sexo:</label>
         <select class="form-select" id="gender" name="gender" required>
           <option value="masculino">Masculino</option>
@@ -59,11 +62,11 @@
           <option value="otro">Otro</option>
         </select>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
         <label for="email" class="form-label">Correo electrónico:</label>
         <input type="email" class="form-control" id="email" name="email" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-10">
         <label for="phoneNumber" class="form-label">Número telefónico:</label>
         <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
       </div>
@@ -71,6 +74,8 @@
     </form>
 
     <!-- Tabla de usuarios -->
+    <div class="table-responsive mt-4">
+        
     <table class="table mt-4">
       <thead>
         <tr>
@@ -92,7 +97,10 @@
         <!-- Aquí se mostrarán los usuarios -->
       </tbody>
     </table>
+
+    </div>
   </div>
+
 
   <script>
     // JavaScript para manejar la lógica de la página
