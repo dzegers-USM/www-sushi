@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <base href="..">
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="nav.css">
+
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>WWWW Sushi</title>
+  </head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-primary mb-2">
+		<div class="container-lg">
+		  <a class="navbar-brand" href="index.html">
+			<img class="nav-logo-fukusuke" src="images/png_sushi_2.png" alt="Fukusuke Sushi" height="64">
+			Fukusuke Sushi
+		  </a>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+			  <li class="nav-item">
+				<a class="nav-link" aria-current="page" href="index.html">Inicio</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="index.html">Link</a>
+			  </li>
+			</ul>
+			<ul class="navbar-nav mb-2 mb-lg-0 ml-auto">
+			  <li class="nav-item">
+				<a class="nav-link" href="login/index.html">Iniciar Sesión</a>
+			  </li>
+			</ul>
+		  </div>
+		</div>
+  </nav>
+
+  <div class="container max-width-sm">
+    <div class="card">
+      <div class="row g-0">
+        <div class="col-md d-flex align-items-end">
+          <img src="images/png_sushi_1.png" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Pedido N° 98524</h5>
+            <ul>
+              <li>Nigiri x2</li>
+              <li>Roll x3</li>
+              <li>Sashimi x2</li>
+            </ul>
+            <p class="card-text">
+              Estado: <span class="text-warning">En Camino</span>
+              <p>
+                
+              </p>
+            </p>
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-danger">Cancelar</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-body-secondary d-flex justify-content-end">
+        <small class="text-body-secondary">
+          Última actualización: 3 minutos
+        </small>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
