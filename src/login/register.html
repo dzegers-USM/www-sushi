@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../main.css">
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 
     <title>WWWW Sushi</title>	
 
@@ -26,7 +28,7 @@
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Crear cuenta</h1>
-							<form action="../index.html" method="post">
+							<form>
 								<div class="row justify-content-sm-center h-100">
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-10 col-sm-10">
 
@@ -137,7 +139,7 @@
 
 
                                 <div class="align-items-center d-flex mt-4">
-                                    <button type="submit" class="btn btn-success ms-auto" href="../index.html">
+                                    <button type="button" class="btn btn-success ms-auto" onclick="registrarCuenta()">
                                         Registrar	
                                     </button>
                                 </div>
@@ -158,17 +160,64 @@
 </body>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    function registrarCuenta(){
         const form = document.querySelector('form');
-        form.addEventListener('submit', function(event) {
-            const password = form.querySelector('#password').value;
-            const confirmPassword = form.querySelector('#confirm_password').value;
-
-            if (password !== confirmPassword) {
+        const password = form.querySelector('#password').value;
+        const confirmPassword = form.querySelector('#confirm_password').value;
+        if (password !== confirmPassword) {
                 event.preventDefault();
                 alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
-            }
-        });
-    });
+        }else {
+            const formData = {
+                    nombre: form.querySelector('#name').value,
+                    email: form.querySelector('#email').value,
+                    pass: form.querySelector('#password').value,
+                    direccion: form.querySelector('#direccion').value,
+                    provincia: form.querySelector('#provincia').value,
+                    telefono: form.querySelector('#telefono').value,
+                    rut: form.querySelector('#run_1').value + '-' + form.querySelector('#run_2').value,
+                    sexo: form.querySelector('#sexo').value,
+                    comuna: form.querySelector('#comuna').value,
+                    region: form.querySelector('#region').value,
+                };
+                console.log(formData);
+                var query = `mutation Mutation($input: UsuarioInput) {
+                    addUsuario(input: $input) {
+                        message
+                        id
+                    }
+                    }`;
+
+
+
+                // Configurar las variables para la solicitud GraphQL
+                var variables = {
+                    input: formData
+                };
+
+                // Realizar la solicitud AJAX
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:8888/graphql',
+                    contentType: 'application/json',
+                    timeout: 15000,
+                    data: JSON.stringify({
+                        query: query,
+                        variables: variables
+                    }),
+                    success: function (response) {
+                        if (response.data.addUsuario.id=="") {
+                            alert(response.data.addUsuario.message)
+                        }else{
+                            localStorage.setItem('misDatos', JSON.stringify({Rol:"cliente",id:response.data.addUsuario.id}));
+				            window.location.href = "../index.html";
+                        }
+                    },
+                    error: function (error) {
+                        console.error('Error en la solicitud AJAX:', error);
+                    }
+                });
+    }
+}
 </script>
 </html>

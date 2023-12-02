@@ -140,10 +140,11 @@ function vaciarCar(){
 function comprarProductos(){
     let dato = JSON.parse(localStorage.getItem('productos'));
     console.log("dato: ",dato);
-
+    var datosusuario = JSON.parse(localStorage.getItem('misDatos'));
+    console.log(datosusuario);
     if(JSON.stringify(dato)!='null'){
-        localStorage.clear();
-        window.location.href = "./Pagado.html";
+        localStorage.clear('productos');
+        // window.location.href = "./Pagado.html";
     }else{
         
     }

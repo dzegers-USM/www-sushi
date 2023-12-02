@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../main.css">
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>WWWW Sushi</title>	
 
 </head>
@@ -26,7 +26,7 @@
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Inicio de Sesión</h1>
-							<form action="../index.html" method="post">
+							<form id="loginForm" action="../index.html" method="post">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="email">E-Mail</label>
 									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
@@ -51,11 +51,11 @@
 								<div class="d-flex align-items-center" style="margin-top: 40px;">
 									<div class="form-check">
 										<input type="checkbox" name="remember" id="remember" class="form-check-input">
-										<label for="remember" class="form-check-label">Recuerdame</label>
+										<label for="remember" class="form-check-label">Recuérdame</label>
 									</div>
-										<button type="submit" class="btn btn-success ms-auto" >
-											Iniciar Sesión
-										</button>
+									<button type="button" class="btn btn-success ms-auto" onclick="iniciarSesion()">
+										Iniciar Sesión
+									</button>
 								</div>
 							</form>
 						</div>
@@ -72,4 +72,57 @@
 	</section>
 
 </body>
+
+<script>
+    function iniciarSesion() {
+    // Obtener los valores del formulario
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+
+    // Construir el objeto de datos para la solicitud GraphQL
+    var inputData = {
+        email: email,
+        pass: password
+    };
+
+    // Construir la solicitud GraphQL con la consulta y variables
+    var query = `query Login($input: UsuarioInputLogin) {
+        login(input: $input) {
+            Rol
+            id
+        }
+    }`;
+
+    // Configurar las variables para la solicitud GraphQL
+    var variables = {
+        input: inputData
+    };
+
+    // Realizar la solicitud AJAX
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:8888/graphql',
+        contentType: 'application/json',
+        timeout: 15000,
+        data: JSON.stringify({
+            query: query,
+            variables: variables  // Cambiado de 'variable' a 'variables'
+        }),
+        success: function (response) {
+            if(response.data.login.Rol==''){
+				console.log("Contraseña incorrecta");
+				alert("Contraseña incorrecta");
+			}
+			else{
+				console.log("Correcta");
+				localStorage.setItem('misDatos', JSON.stringify(response.data.login));
+				window.location.href = "../index.html";
+			}
+        }
+    });
+}
+
+</script>
+
+
 </html>
