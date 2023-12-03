@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="nav.css">
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>WWWW Sushi</title>
   </head>
 <body>
@@ -110,4 +110,57 @@
 <script src="./carrito/script/carrito.js"></script>
 
 </body>
+<script>
+  //obtener el id del usuario
+  var datosusuario = JSON.parse(localStorage.getItem('misDatos'));
+        console.log(datosusuario);
+  console.log(datosusuario.id)
+  //construir solicitud a graphql
+
+  const query = `
+  query GetCompra($getCompraId: ID!) {
+    getCompra(id: $getCompraId) {
+      direccion {
+        direccion
+      }
+      estado
+      productos {
+        cantidad
+        nombre
+      }
+      
+    }
+  }
+`;
+const getCompraId = "653ed90efd499f138fd26a28";
+$.ajax({
+  type: "POST",
+  url: 'http://localhost:8888/graphql',
+  contentType: 'application/json',
+  timeout: 15000,
+  data: JSON.stringify({
+      query: query,
+      variables: {getCompraId}
+  }),
+  success: function (response) {
+    var compra = response.data.getCompra[0];
+
+    // Update HTML elements with fetched data
+    $('.card-title').text('Pedido N° ' + getCompraId);
+
+    var productList = $('.card-body ul');
+    productList.empty();
+    console.log(compra.productos)
+    compra.productos.forEach((producto)=>{
+      var listItem = $('<li></li>').text(producto.cantidad + ' ' + producto.nombre);
+      productList.append(listItem)});
+
+    $('.text-warning').text(compra.estado);
+    $('.text-body-secondary').text('Última actualización: ' + currentTime);
+    },
+    error: function (error) {
+    console.error('Error in AJAX request:', error);
+    }
+    });
+</script>
 </html>
