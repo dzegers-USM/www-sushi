@@ -55,7 +55,7 @@ function recargarProductosCarrito(){
                 `
                 <div class="row mt-2 text-center rounded-3 shadow d-flex align-items-center" style="min-height: 100px;">
                     <div class="col-lg-2 col-md-3 col-12">
-                        <img src=${product.imagen} class="card-img-top" alt="..." style="max-width: 100%;">
+                        <img src="../images/menu${product.index}.webp" class="card-img-top" alt="..." style="max-width: 100%;">
                     </div>
                     <div class="col-lg-2 col-md-3 col-12 d-flex flex-column align-items-center">
                         <strong>Titulo:</strong>

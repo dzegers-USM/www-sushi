@@ -1,55 +1,31 @@
 // PRODUCTOS
-const productos = [
-    // Abrigos
-    {
-        id: "sushi-01",
-        titulo: "Veggie Keto Oriental",
-        imagen: "../images/menu1.webp",
-        precio: 10000
-    },
-    {
-        id: "sushi-02",
-        titulo: "Cheese Roll",
-        imagen: "../images/menu6.webp",
-        precio: 10000
-    },
-    {
-        id: "sushi-03",
-        titulo: "Samurai Roll",
-        imagen: "../images/menu8.webp",
-        precio: 10000
-    },
-    {
-        id: "sushi-04",
-        titulo: "Cheese Tempura",
-        imagen: "../images/menu9.webp",
-        precio: 10000
-    },
-    {
-        id: "sushi-05",
-        titulo: "Sashimi Tempura Atún",
-        imagen: "../images/menu10.webp",
-        precio: 10000
-    },
-    {
-        id: "sushi-06",
-        titulo: "Sashimi Atún",
-        imagen: "../images/menu11.webp",
-        precio: 10000
-    },
-    {
-        id: "sushi-07",
-        titulo: "Tropical Roll",
-        imagen: "../images/menu12.webp",
-        precio: 10000
-    },
-    {
-        id: "sushi-08",
-        titulo: "Strawberry Roll",
-        imagen: "../images/menu13.webp",
-        precio: 10000
-    },
-];
+
+var query2 = `
+        query GetProductos {
+            getProductos {
+                id
+                nombre
+                precio
+            }
+            }
+        `;
+
+
+        fetch('http://localhost:8888/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: query2,
+          variables: {}
+        }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            productos=data.data.getProductos
+        })
+        .catch(error => console.error('Error:', error));
 
 
 
@@ -75,8 +51,7 @@ function cargarNumeroCarrito(){
 }
 
 
-function guardarProducto(id){
-
+function guardarProducto(id,i){
 
     if(carrito.length === 0){
         //recupero los datos guardados en el localStorage
@@ -95,7 +70,7 @@ function guardarProducto(id){
                 carrito[indexSimilar].numeroUnidades ++;
             }else{
                 productoAgregado.numeroUnidades = 1;
-                carrito.push(productoAgregado)
+                carrito.push({...productoAgregado, index: i})
             }
 
 
@@ -118,7 +93,7 @@ function guardarProducto(id){
                 carrito[indexSimilar].numeroUnidades ++;
             }else{
                 productoAgregado.numeroUnidades = 1;
-                carrito.push(productoAgregado)
+                carrito.push({...productoAgregado, index: i})
             }
 
 
