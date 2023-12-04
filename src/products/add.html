@@ -237,7 +237,7 @@
 									<p>$${response.data.getProductos[index].precio}</p>
 							</div>
 							<div class="col d-flex  justify-content-end">
-									<button type="button" class="btn btn-danger">
+									<button type="button" class="btn btn-danger" onclick="logItemId('${response.data.getProductos[index].id}')">
 											<i class="fas fa-trash"></i>
 									</button>
 							</div>
@@ -254,6 +254,46 @@
 					console.error('Error en la solicitud AJAX:', error);
 			}
 		});
+
+
+    function logItemId(itemId) {
+      console.log(itemId); 
+
+      var query2 = `
+      mutation Mutation($deleteProductoId: ID!) {
+			deleteProducto(id: $deleteProductoId) {
+				message
+        }
+      }
+		`;
+
+    var variables2 = {
+		  deleteProductoId: itemId
+		};
+
+		fetch('http://localhost:8888/graphql', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			query: query2,
+			variables: variables2
+		}),
+		})
+		.then(response => response.json())
+		.then(data => {
+        console.log('Mutation result:', data);
+        // Aquí puedes realizar cualquier acción adicional con los datos si es necesario
+
+        // Luego, realiza el refresh de la página
+        window.location.reload();
+    })
+		.catch(error => console.error('Error:', error));
+
+
+	  }
+
 
 </script>
 </html>
