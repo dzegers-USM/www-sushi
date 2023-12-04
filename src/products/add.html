@@ -120,71 +120,16 @@
       </div>
     </div>
 	
-	  <div class="row">
-      <div class="col d-flex justify-content-end">
-        <button class="btn btn-success" onclick="listaProductos()">
-          Lista
-        </button>
-      </div>
-    </div>
-
     
     <h2>Producto en stock</h2>
 
     <div class="row mt-2 text-center rounded-3 shadow d-flex align-items-center" style="min-height: 100px;">
 
-
-      <div class="col-lg-2 col-md-3 col-12">
-          <img src="./products/images/sushi1.jpg" class="card-img-top" alt="..." style="max-width: 100%;">
-      </div>
-
-      <div class="col-lg-2 col-md-3 col-12 d-flex flex-column align-items-center">
-          <p>Sushi 1</p>
-      </div>
-      <div class="col d-flex  justify-content-end">
-          <button type="button" class="btn btn-danger">
-              <i class="fas fa-trash"></i>
-          </button>
-      </div>
+			<div id="elementos-lista">
+        <!-- Aquí se mostrarán los elementos de la lista -->
+			</div>
+			
   </div>
-
-  
-  <div class="row mt-2 text-center rounded-3 shadow d-flex align-items-center" style="min-height: 100px;">
-
-
-    <div class="col-lg-2 col-md-3 col-12">
-        <img src="./products/images/sushi2.jpg" class="card-img-top" alt="..." style="max-width: 100%;">
-    </div>
-
-    <div class="col-lg-2 col-md-3 col-12 d-flex flex-column align-items-center">
-        <p>Sushi 2</p>
-    </div>
-    <div class="col d-flex  justify-content-end">
-        <button type="button" class="btn btn-danger">
-            <i class="fas fa-trash"></i>
-        </button>
-    </div>
-</div>
-
-
-  <div class="row mt-2 text-center rounded-3 shadow d-flex align-items-center" style="min-height: 100px;">
-
-    <div class="col-lg-2 col-md-3 col-12">
-        <img src="./products/images/sushi3.jpg" class="card-img-top" alt="..." style="max-width: 100%;">
-    </div>
-
-    <div class="col-lg-2 col-md-3 col-12 d-flex flex-column align-items-center">
-        <p>Sushi 3</p>
-    </div>
-    
-    <div class="col d-flex  justify-content-end">
-        <button type="button" class="btn btn-danger">
-            <i class="fas fa-trash"></i>
-        </button>
-    </div>
-  </div>
-
-
 
 
   </div><div class="bg">
@@ -257,36 +202,57 @@
 			});
     }
 		
-		function listaProductos() {
-			console.log("func listaProductos");
-			
-			var query = `query Query {
+		var query = `query Query {
 				getProductos {
 					nombre,
 					precio
 					
 				}
-				
 			}`;
-			console.log("func 2");
-			$.ajax({
-				type: "POST",
-				url: 'http://localhost:8888/graphql',
-				contentType: 'application/json',
-				timeout: 15000,
-				data: JSON.stringify({
-						query: query
-				}),
-				success: function (response) {
-					localStorage.setItem('misDatos', JSON.stringify({Rol:"cliente",id:response.data.getProductos.id}));
-					console.log("func 3:", response);
-					//window.location.href = "../src/products/add.html";
-				},
-				error: function (error) {
-						console.error('Error en la solicitud AJAX:', error);
-				}
-			});
-		}
+		$.ajax({
+			type: "POST",
+			url: 'http://localhost:8888/graphql',
+			contentType: 'application/json',
+			timeout: 15000,
+			data: JSON.stringify({
+					query: query
+			}),
+			success: function (response) {
+				localStorage.setItem('misDatos', JSON.stringify({Rol:"cliente",id:response.data.getProductos.id}));
+				var elementosContainer = document.getElementById('elementos-lista');
+				let index = 0;
+				while (index < response.data.getProductos.length) {
+					console.log(response.data.getProductos[index]);
+					
+					var elementoHtml = document.createElement('div');
+					elementoHtml.innerHTML = `						
+
+						<div class="row mt-2 text-center rounded-3 shadow d-flex align-items-center" style="min-height: 100px;">
+							<div class="col-lg-2 col-md-3 col-12">
+									<img src="./products/images/sushi2.jpg" class="card-img-top" alt="..." style="max-width: 100%;">
+							</div>
+							<div class="col-lg-2 col-md-3 col-12 d-flex flex-column align-items-center">
+									<p>${response.data.getProductos[index].nombre}</p>
+									<p>$${response.data.getProductos[index].precio}</p>
+							</div>
+							<div class="col d-flex  justify-content-end">
+									<button type="button" class="btn btn-danger">
+											<i class="fas fa-trash"></i>
+									</button>
+							</div>
+						</div>
+						<!-- Puedes agregar más detalles aquí si es necesario -->
+					`;
+					elementosContainer.appendChild(elementoHtml);
+					index++;
+					}
+					
+				//window.location.href = "../src/products/add.html";
+			},
+			error: function (error) {
+					console.error('Error en la solicitud AJAX:', error);
+			}
+		});
 
 </script>
 </html>
