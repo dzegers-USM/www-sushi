@@ -66,6 +66,9 @@
         >Descripción</label
       >
       <textarea
+				id="description"
+        name="description"
+        type="text"
         class="form-control validate"
         rows="3"
         required
@@ -101,7 +104,7 @@
           <input
             id="stock"
             name="stock"
-            type="text"
+            type="number"
             class="form-control validate"
             required
           />
@@ -111,7 +114,7 @@
     
     <div class="row">
       <div class="col d-flex justify-content-end">
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-success" onclick="agregarProducto()">
           Guardar
         </button>
       </div>
@@ -200,4 +203,51 @@
     </div>
   </div>
 </body>
+
+<script>
+    function agregarProducto(){
+			const name =  document.getElementById('name').value;
+			const description =  document.getElementById('description').value;
+			const stock =  document.getElementById('stock').value;
+			console.log("name:",name);
+			console.log("description:",description);
+			console.log("stock:",stock);
+			
+			const data = {
+				nombre: name,
+				precio: parseInt(stock),
+			}
+			console.log(data);
+			
+			var query = `mutation Mutation($input: ProductoInput) {
+				addProducto(input: $input) {
+					nombre
+					precio
+				}
+			}`;
+			
+			var variables = {
+        input: data
+			};
+			
+			$.ajax({
+				type: "POST",
+				url: 'http://localhost:8888/graphql',
+				contentType: 'application/json',
+				timeout: 15000,
+				data: JSON.stringify({
+						query: query,
+						variables: variables
+				}),
+				success: function (response) {
+					localStorage.setItem('misDatos', JSON.stringify({Rol:"cliente",id:response.data.addProducto.id}));
+					//window.location.href = "../src/products/add.html";
+				},
+				error: function (error) {
+						console.error('Error en la solicitud AJAX:', error);
+				}
+			});
+    }
+
+</script>
 </html>
