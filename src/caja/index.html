@@ -12,7 +12,8 @@
 	<link rel="stylesheet" href="nav.css">
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	
     <title>WWWW Sushi</title>
   </head>
 <body>
@@ -42,86 +43,7 @@
   </nav>
 
 	<div class="container mt-5 flex-fill">
-		<div class="accordion" id="accordion">
-			<div class="accordion-item">
-				<h2 class="accordion-header">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-						N° de pedido 98525 Cliente:Juan Labbe Direccion: Los alerces 2460 Hora: 6:50
-					</button>
-				</h2>
-				<div id="collapse1" class="collapse" data-parent="#accordion">
-					<div class="accordion-body">
-						<div class="card border border-0">
-							<div class="card-body">
-								<ul>
-									<li>Nigiri x3</li>
-									<li>Roll x5</li>
-									<li>Sashimi x4</li>
-								</ul>
-								<p>
-									Estado: <span class="text-danger">Preparandose</span>
-									<span style="margin-left: 10px;">Boleta: <span class="text-danger">No emitida</span>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-			
-		<div class="accordion" id="accordion2">
-			<div class="accordion-item">
-				<h2 class="accordion-header">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
-						N° de pedido 98524 Cliente:Jano Hernandez Direccion: Rapel Hora: 6:40
-					</button>
-				</h2>
-				<div id="collapse2" class="collapse" data-parent="#accordion2">
-					<div class="accordion-body">
-						<div class="card border border-0">
-							<div class="card-body">
-								<ul>
-									<li>Nigiri x2</li>
-									<li>Roll x3</li>
-									<li>Sashimi x2</li>
-								</ul>
-								<p>
-									Estado: <span class="text-warning">En Camino</span>
-									<span style="margin-left: 10px;">Boleta: <span class="text-danger">No emitida</span>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="accordion" id="accordion3">
-			<div class="accordion-item">
-				<h2 class="accordion-header">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-						N° de pedido 98523 Cliente:Daniel Zegers Direccion: San Jose De La Sierra 99 Depto 109 Hora: 6:15
-					</button>
-				</h2> 
-				<div id="collapse3" class="collapse" data-parent="#accordion3">
-					<div class="accordion-body">
-						<div class="card border border-0">
-							<div class="card-body">
-								<ul>
-									<li>Nigiri </li>
-									<li>Roll x2</li>
-									<li>Sashimi</li>
-								</ul>
-								<p>
-									Estado: <span class="text-success">Entregado</span>
-									<span style="margin-left: 10px;">Boleta: <span class="text-success">Emitida</span>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div class="accordion" id="accordionContainer"></div>
 	</div>
 </div><div class="bg">
     <div class="container">
@@ -147,5 +69,211 @@
     </div>
   </div>
 </div>
+<script>
+
+
+  function toggleAccordion(body) {
+    body.style.display = body.style.display === 'none' ? 'block' : 'none';
+  }
+
+    var query = `query GetCompras {
+        getCompras {
+            Monto
+            direccion {
+                comuna
+                direccion
+                provincia
+                region
+            }
+            estado
+            productos {
+                cantidad
+                nombre
+            }
+            usuario
+            _id
+			fecha
+        }
+    }`;
+
+    // Realizar la solicitud AJAX
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:8888/graphql',
+        contentType: 'application/json',
+        timeout: 15000,
+        data: JSON.stringify({
+            query: query,
+            variables: {}
+        }),
+        success: function (response) {
+
+            // Obtener la lista de compras desde la respuesta
+            var compras = response.data.getCompras;
+			console.log(compras);
+			var accordionContainer = document.getElementById('accordionContainer');
+
+
+				compras.forEach(function (item) {
+				var accordionItem = document.createElement('div');
+				accordionItem.className = 'accordion-item';
+
+				var accordionHeader = document.createElement('h2');
+				accordionHeader.className = 'accordion-header';
+
+				// Crear el botón dentro del encabezado del acordeón
+				var accordionButton = document.createElement('button');
+				accordionButton.className = 'accordion-button';
+				accordionButton.type = 'button';
+				accordionButton.setAttribute('data-bs-toggle', 'collapse');
+				accordionButton.setAttribute('data-bs-target', '#collapse1');
+				accordionButton.setAttribute('aria-expanded', 'true');
+				accordionButton.setAttribute('aria-controls', 'collapse1');
+				accordionButton.textContent = `Pedido a Direccion: ${item.direccion.direccion}, ${item.direccion.comuna}, ${item.direccion.provincia}`;
+				// Agregar el botón al encabezado del acordeón
+				accordionHeader.appendChild(accordionButton);
+
+				// Agregar el encabezado del acordeón al documento (supongamos que hay un contenedor con el id 'accordionContainer')
+				var accordionContainer = document.getElementById('accordionContainer');
+				accordionContainer.appendChild(accordionHeader);
+
+				var accordionBody = document.createElement('div');
+				accordionBody.id = 'collapse1';
+				accordionBody.className = 'collapse';
+				accordionBody.setAttribute('data-parent', '#accordion');
+
+				// Contenido del cuerpo del acordeón
+				accordionBody.innerHTML = `
+				<div class="accordion-body">
+					<div class="card border border-0">
+					<div class="card-body">
+						<ul id="lista-productos">
+						</ul>
+						<p>
+						Estado: <span class="text-danger">${item.estado}</span>
+						<span style="margin-left: 10px;">Boleta: <span class="text-danger">No emitida</span>
+						</p>	
+						<div>
+						<button class="btn btn-primary" onclick="logItemId('${item._id}')">Pedido Listo</button>
+						<button class="btn btn-primary" onclick="logItemIdEntregado('${item._id}')">Pedido Entregado</button>
+						</div>
+					</div>
+					</div>
+				</div>
+				`;
+
+				// Agrega el cuerpo del acordeón al documento (asumiendo que el contenedor del acordeón tiene el id 'accordionContainer')
+				var accordionContainer = document.getElementById('accordionContainer');
+				accordionContainer.appendChild(accordionBody);
+
+				accordionItem.appendChild(accordionHeader);
+				accordionItem.appendChild(accordionBody);
+				
+				accordionItem.onclick = function() {
+					toggleAccordion(accordionBody);
+				};
+
+				accordionContainer.appendChild(accordionItem);
+
+				
+				let lista_productos=item.productos
+				var ulElement = document.getElementById('lista-productos');
+
+				lista_productos.forEach(function (item1) {
+					var liElement = document.createElement('li');
+
+					// Asigna el contenido del <li> con datos del JSON
+					liElement.textContent = item1.nombre + 'x ' + item1.cantidad;
+
+					// Agrega el <li> al <ul>
+					ulElement.appendChild(liElement);
+				})
+
+				});
+
+
+        }
+    });
+
+	function logItemId(itemId) {
+		console.log(itemId);
+		var query2 = `
+		mutation UpdateCompra($updateCompraId: ID!, $input: CompraInputUpdate) {
+			updateCompra(id: $updateCompraId, input: $input) {
+			_id
+			}
+		}
+		`;
+
+		var variables2 = {
+		updateCompraId: itemId,
+		input: {
+			estado: "Listo"
+		}
+		};
+
+		fetch('http://localhost:8888/graphql', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			query: query2,
+			variables: variables2
+		}),
+		})
+		.then(response => response.json())
+		.then(data => {
+        console.log('Mutation result:', data);
+        // Aquí puedes realizar cualquier acción adicional con los datos si es necesario
+
+        // Luego, realiza el refresh de la página
+        window.location.reload();
+    })
+		.catch(error => console.error('Error:', error));
+
+
+	}
+
+	function logItemIdEntregado(itemId) {
+		var query2 = `
+		mutation UpdateCompra($updateCompraId: ID!, $input: CompraInputUpdate) {
+			updateCompra(id: $updateCompraId, input: $input) {
+			_id
+			}
+		}
+		`;
+
+		var variables2 = {
+		updateCompraId: itemId,
+		input: {
+			estado: "Entregado"
+		}
+		};
+
+		fetch('http://localhost:8888/graphql', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			query: query2,
+			variables: variables2
+		}),
+		})
+		.then(response => response.json())
+		.then(data => {
+        console.log('Mutation result:', data);
+        // Aquí puedes realizar cualquier acción adicional con los datos si es necesario
+
+        // Luego, realiza el refresh de la página
+        window.location.reload();
+    })
+		.catch(error => console.error('Error:', error));
+
+
+	}
+
+</script>
 </body>
 </html>
