@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="nav.css">
   <link rel="stylesheet" href="index.css">
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
   <title>WWWW Sushi Admin</title>
 </head>
 <body>
@@ -71,32 +76,9 @@
       <button type="submit" class="btn btn-primary">Crear Usuario</button>
     </form>
 
-    <!-- Tabla de usuarios -->
-    <div class="table-responsive mt-4">
-        
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Rut</th>
-          <th>Nombre Completo</th>
-          <th>Dirección</th>
-          <th>Comuna</th>
-          <th>Provincia</th>
-          <th>Región</th>
-          <th>Fecha de Nacimiento</th>
-          <th>Sexo</th>
-          <th>Correo electrónico</th>
-          <th>Número telefónico</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="userTable">
-        <!-- Aquí se mostrarán los usuarios -->
-      </tbody>
-    </table>
+    		<div  class="accordion" id="accordionContainer" style="margin-top: 50px;"></div>
 
-    </div>
+
   </div>
   <div class="container-lg">
         
@@ -120,86 +102,60 @@
 </div>
 
   <script>
-    // JavaScript para manejar la lógica de la página
-
-    // Datos simulados de usuarios (esto debería reemplazarse con una base de datos real)
-    let usersData = [{
-        id: 1,
-        rut: "17987654-1",
-        fullName: "Juan Labbe",
-        address: "Consistorial 7165",
-        comuna: "Peñalolen",
-        provincia: "Santiago",
-        region: "Metropolitana",
-        birthdate: "17-09-2000",
-        gender: "Masculino",
-        email: "juan@gmail.com",
-        phoneNumber: "+56967543654",
-      }];
-
-    // Función para cargar los usuarios en la tabla
-    function loadUsers() {
-      const userTable = document.getElementById("userTable");
-      userTable.innerHTML = "";
-
-      usersData.forEach((user) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${user.id}</td>
-          <td>${user.rut}</td>
-          <td>${user.fullName}</td>
-          <td>${user.address}</td>
-          <td>${user.comuna}</td>
-          <td>${user.provincia}</td>
-          <td>${user.region}</td>
-          <td>${user.birthdate}</td>
-          <td>${user.gender}</td>
-          <td>${user.email}</td>
-          <td>${user.phoneNumber}</td>
-          <td>
-            <button class="btn btn-danger btn-sm" data-user-id="${user.id}">Eliminar</button>
-          </td>
-        `;
-        userTable.appendChild(row);
-      });
-
-      // Asociar evento de clic a los botones "Eliminar"
-      const deleteButtons = document.querySelectorAll(".btn-danger");
-      deleteButtons.forEach((button) => {
-        button.addEventListener("click", deleteUser);
-      });
-    }
-
-    // Función para eliminar un usuario
-    function deleteUser(event) {
-      const userId = parseInt(event.target.getAttribute("data-user-id"), 10);
-      usersData = usersData.filter((user) => user.id !== userId);
-      loadUsers();
-    }
+    
 
     // Función para agregar un nuevo usuario
     function addUser(formData) {
       const newUser = {
-        id: usersData.length + 1,
+        nombre: formData.get("fullName"),
+        pass: "123",
         rut: formData.get("rut"),
-        fullName: formData.get("fullName"),
-        address: formData.get("address"),
+        direccion: formData.get("address"),
         comuna: formData.get("comuna"),
         provincia: formData.get("provincia"),
         region: formData.get("region"),
-        birthdate: formData.get("birthdate"),
-        gender: formData.get("gender"),
+        sexo: formData.get("gender"),
         email: formData.get("email"),
-        phoneNumber: formData.get("phoneNumber"),
+        telefono: formData.get("phoneNumber")
       };
-      usersData.push(newUser);
-      loadUsers();
-    }
 
-    // Manejar la presentación de usuarios al cargar la página
-    window.addEventListener("DOMContentLoaded", () => {
-      loadUsers();
-    });
+      var query = `mutation Mutation($input: UsuarioInput) {
+                    addUsuario(input: $input) {
+                        message
+                        id
+                    }
+                    }`;
+
+
+
+          // Configurar las variables para la solicitud GraphQL
+          var variables = {
+              input: newUser
+          };
+
+          // Realizar la solicitud AJAX
+          $.ajax({
+              type: "POST",
+              url: 'http://localhost:8888/graphql',
+              contentType: 'application/json',
+              timeout: 15000,
+              data: JSON.stringify({
+                  query: query,
+                  variables: variables
+              }),
+              success: function (response) {
+                  if (response.data.addUsuario.id=="") {
+                      alert(response.data.addUsuario.message)
+                  }else{
+                  window.location.reload();
+
+                  }
+              },
+              error: function (error) {
+                  console.error('Error en la solicitud AJAX:', error);
+              }
+          });
+    }
 
     // Manejar el envío del formulario para crear usuarios
     const userForm = document.getElementById("userForm");
@@ -207,8 +163,222 @@
       e.preventDefault();
       const formData = new FormData(userForm);
       addUser(formData);
-      userForm.reset();
+
     });
+
+    var queryusuarios = `query GetUsuarios {
+      getUsuarios {
+        comuna
+        direccion
+        email
+        id
+        nombre
+        pass
+        provincia
+        region
+        rut
+        sexo
+        telefono
+      }
+    }`;
+
+
+
+
+
+    // Realizar la solicitud AJAX
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:8888/graphql',
+        contentType: 'application/json',
+        timeout: 15000,
+        data: JSON.stringify({
+            query: queryusuarios,
+            variables: {}
+        }),
+        success: function (response) {
+            console.log();
+            var datos=response.data.getUsuarios
+	      		var accordionContainer = document.getElementById('accordionContainer');
+
+            datos.forEach((item,index) => {
+              var accordionItem = document.createElement('div');
+              accordionItem.className = 'accordion-item';
+
+              var accordionHeader = document.createElement('h2');
+              accordionHeader.className = 'accordion-header';
+
+              // Crear el botón dentro del encabezado del acordeón
+              var accordionButton = document.createElement('button');
+              accordionButton.className = 'accordion-button';
+              accordionButton.type = 'button';
+              accordionButton.setAttribute('data-bs-toggle', 'collapse');
+              accordionButton.setAttribute('data-bs-target', '#collapse1');
+              accordionButton.setAttribute('aria-expanded', 'true');
+              accordionButton.setAttribute('aria-controls', 'collapse1');
+              accordionButton.textContent = `Usuario : ${item.nombre}`;
+              // Agregar el botón al encabezado del acordeón
+              accordionHeader.appendChild(accordionButton);
+
+              // Agregar el encabezado del acordeón al documento (supongamos que hay un contenedor con el id 'accordionContainer')
+              var accordionContainer = document.getElementById('accordionContainer');
+              accordionContainer.appendChild(accordionHeader);
+
+              var accordionBody = document.createElement('div');
+              accordionBody.id = `collapse${index + 1}`;
+              accordionBody.className = 'collapse';
+              accordionBody.setAttribute('data-parent', '#accordion');
+              accordionButton.setAttribute('data-bs-target', `#${accordionBody.id}`);
+              accordionButton.setAttribute('aria-controls', accordionBody.id);
+              // Contenido del cuerpo del acordeón
+              accordionBody.innerHTML = `
+              <div class="accordion-body">
+                <div class="card border border-0">
+                <div class="card-body">
+
+                  <p><strong>Email:</strong>${item.email}</p>
+                  <p><strong>RUT:</strong> ${item.rut}</p>
+                  <p><strong>Dirección:</strong> ${item.direccion} </p>
+                  <p><strong>Teléfono:</strong> ${item.telefono} </p>
+                  <p><strong>Región:</strong>  ${item.region} </p>
+                  <p><strong>Provincia:</strong>  ${item.provincia}  </p>
+
+                  </div>
+                <div>
+                  
+                  <button class="btn btn-primary" onclick="CambiarAdmin('${item.id}')">Cambiar a Admin</button>
+                  <button class="btn btn-primary" onclick="CambiarCliente('${item.id}')">Cambiar a cliente</button>                  
+                  <button class="btn btn-primary" onclick="Eliminar('${item.id}')">Elimininar usuario</button>
+                </div>
+                </div>
+                </div>
+              </div>
+              `;
+
+              // Agrega el cuerpo del acordeón al documento (asumiendo que el contenedor del acordeón tiene el id 'accordionContainer')
+              var accordionContainer = document.getElementById('accordionContainer');
+              accordionContainer.appendChild(accordionBody);
+
+              accordionItem.appendChild(accordionHeader);
+              accordionItem.appendChild(accordionBody);
+              
+              accordionItem.onclick = function() {
+                toggleAccordion(accordionBody);
+              };
+
+              accordionContainer.appendChild(accordionItem);
+
+              
+              
+
+				});
+
+        },
+        error: function (error) {
+            console.error('Error en la solicitud AJAX:', error);
+        }
+    });
+
+    function CambiarAdmin(iduser) {
+      var query2 = `
+          mutation CambiarRol($cambiarRolId: ID!, $input: RolInput) {
+            CambiarRol(id: $cambiarRolId, input: $input) {
+              message
+            }
+          }
+        `;
+
+        var variables2 = {
+          cambiarRolId: iduser,
+          input: {
+            nombre: "admin"
+          }
+        };
+
+        fetch('http://localhost:8888/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: query2,
+          variables: variables2
+        }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Mutation result:', data);
+            alert("Rol cambiado a admin")
+            
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    function CambiarCliente(iduser) {
+      var query2 = `
+          mutation CambiarRol($cambiarRolId: ID!, $input: RolInput) {
+            CambiarRol(id: $cambiarRolId, input: $input) {
+              message
+            }
+          }
+        `;
+
+        var variables2 = {
+          cambiarRolId: iduser,
+          input: {
+            nombre: "cliente"
+          }
+        };
+
+        fetch('http://localhost:8888/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: query2,
+          variables: variables2
+        }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Mutation result:', data);
+            alert("Rol cambiado a cliente")
+            
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    function Eliminar(iduser) {
+      var query2 = `
+          mutation DeleteUsuario($deleteUsuarioId: ID!) {
+            deleteUsuario(id: $deleteUsuarioId) {
+              message
+            }
+          }
+        `;
+
+        var variables2 = {
+          deleteUsuarioId: iduser
+        };
+
+        fetch('http://localhost:8888/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: query2,
+          variables: variables2
+        }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Mutation result:', data);
+            
+            window.location.reload();
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
   </script>
 
 </div>
