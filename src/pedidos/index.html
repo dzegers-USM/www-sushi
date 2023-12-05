@@ -48,41 +48,9 @@
 		</div>
   </nav>
 
-  <div class="container max-width-sm flex-fill">
-    <div class="card">
-      <div class="row g-0">
-        <div class="col-md d-flex align-items-end">
-          <img src="images/png_sushi_1.png" class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Pedido N° 98524</h5>
-            <ul>
-              <li>Nigiri x2</li>
-              <li>Roll x3</li>
-              <li>Sashimi x2</li>
-            </ul>
-            <p class="card-text">
-              Estado: <span class="text-warning">En Camino</span>
-              <p>
-                
-              </p>
-            </p>
-            <div class="d-flex justify-content-end">
-              <button class="btn btn-danger">Cancelar</button>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      <div class="card-footer text-body-secondary d-flex justify-content-end">
-        <small class="text-body-secondary">
-          Última actualización: 3 minutos
-        </small>
-      </div>
-    </div>
-  </div>
+  <div  class="accordion" id="container-decard" style="margin-top: 50px;"></div>
 
+  
   <div class="bg">
     <div class="container">
       <div class="container-lg">
@@ -110,29 +78,26 @@
 <script src="./carrito/script/carrito.js"></script>
 
 </body>
-<script>
-  //obtener el id del usuario
+  <script>
+
+    //obtener el id del usuario
   var datosusuario = JSON.parse(localStorage.getItem('misDatos'));
         console.log(datosusuario);
-  console.log(datosusuario.id)
+  console.log()
   //construir solicitud a graphql
 
   const query = `
-  query GetCompra($getCompraId: ID!) {
-    getCompra(id: $getCompraId) {
-      direccion {
-        direccion
-      }
-      estado
-      productos {
-        cantidad
-        nombre
-      }
-      
+  query GetCompras {
+  getCompras {
+    estado
+    productos {
+      cantidad
+      nombre
     }
+    usuario
   }
+}
 `;
-const getCompraId = "653ed90efd499f138fd26a28";
 $.ajax({
   type: "POST",
   url: 'http://localhost:8888/graphql',
@@ -140,27 +105,70 @@ $.ajax({
   timeout: 15000,
   data: JSON.stringify({
       query: query,
-      variables: {getCompraId}
+      variables: {}
   }),
   success: function (response) {
-    var compra = response.data.getCompra[0];
+    
+    let lista=response.data.getCompras
+    var listaFiltrada = lista.filter(function(item) {
+      return item.usuario === datosusuario.id;
+    });
 
-    // Update HTML elements with fetched data
-    $('.card-title').text('Pedido N° ' + getCompraId);
+    function elementoAHtml(elemento) {
+        // Construir la lista de productos como una cadena HTML
+        var productosHtml = elemento.productos.map(function (producto) {
+            return `<li>${producto.nombre} x${producto.cantidad}</li>`;
+        }).join('');
 
-    var productList = $('.card-body ul');
-    productList.empty();
-    console.log(compra.productos)
-    compra.productos.forEach((producto)=>{
-      var listItem = $('<li></li>').text(producto.cantidad + ' ' + producto.nombre);
-      productList.append(listItem)});
+        // Construir el bloque HTML completo
+        var html = `
+        <div class="container max-width-sm flex-fill" style="margin-top: 50px;">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-md d-flex align-items-end">
+                        <img src="images/png_sushi_1.png" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Pedido N° ${elemento.usuario}</h5>
+                            <ul>
+                                ${productosHtml}
+                            </ul>
+                            <p class="card-text">
+                                Estado: <span class="text-warning">${elemento.estado}</span>
+                            </p>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-danger">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-body-secondary d-flex justify-content-end">
+                    <small class="text-body-secondary">
+                        Última actualización: 3 minutos
+                    </small>
+                </div>
+            </div>
+        </div>
+        `;
 
-    $('.text-warning').text(compra.estado);
-    $('.text-body-secondary').text('Última actualización: ' + currentTime);
-    },
-    error: function (error) {
-    console.error('Error in AJAX request:', error);
+        return html;
+    }
+
+    // Obtener el contenedor donde se agregarán los elementos
+    var contenedor = document.getElementById("container-decard"); // Puedes cambiar esto según la estructura de tu HTML
+
+    // Convertir cada elemento y agregarlos al contenedor
+    listaFiltrada.forEach(function (elemento) {
+        contenedor.innerHTML += elementoAHtml(elemento);
+    });
+
     }
     });
+    // Tu lista de elementos
+   
+
+    // Función para convertir un elemento en HTML
+    
 </script>
 </html>

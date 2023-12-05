@@ -32,7 +32,7 @@ function recargarProductosCarrito(){
         numero_products.innerHTML= numeroP;
 
         if(numeroP ===0){
-            localStorage.clear()
+            localStorage.clear('productos')
         }
 
 
@@ -131,7 +131,7 @@ function recargarProductosCarrito(){
 function vaciarCar(){
     
 
-    localStorage.clear();
+    localStorage.clear('productos');
     recargarProductosCarrito();
 }
 
@@ -143,10 +143,60 @@ function comprarProductos(){
     var datosusuario = JSON.parse(localStorage.getItem('misDatos'));
     console.log(datosusuario);
     if(JSON.stringify(dato)!='null'){
-        localStorage.clear('productos');
-        // window.location.href = "./Pagado.html";
-    }else{
+
+        var nuevaLista = dato.map(function(item) {
+            return {
+                cantidad: item.numeroUnidades,
+                idproducto: item.id
+            };
+        });
+        let montofinal=0
+        dato.forEach(element => {
+            montofinal= montofinal+ element.numeroUnidades*element.precio
+        });
+        var query2 = `
+        mutation Mutation($addCompraId: ID!, $input: CompraInput) {
+            addCompra(id: $addCompraId, input: $input) {
+              estado
+            }
+          }
+        `;
+
+        var datosusuario = JSON.parse(localStorage.getItem('misDatos'));
+        iduser=datosusuario.id
+
+        var variab= {
+            addCompraId: iduser,
+            input: {
+              Monto: montofinal,
+              productos: nuevaLista
+            }
+          
+          }
+
+        fetch('http://localhost:8888/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: query2,
+          variables: variab
+        }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            localStorage.clear('productos');
+			localStorage.setItem('misDatos', JSON.stringify(datosusuario));
+
+            window.location.href = "./Pagado.html";
+            
+        })
+        .catch(error => console.error('Error:', error));
+
         
+    }else{
+        alert("No se puede comprar nada porque no tiene nada seleccionado.")
     }
 
 }
