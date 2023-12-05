@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="dashboard/ventas.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../node_modules/daterangepicker/moment.min.js"></script>
@@ -54,7 +55,7 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <div>Rango de consulta</div>
-              <input class="mb-2" type="text" name="daterange" value="09/10/2023 - 09/16/2023" />
+              <input class="mb-2" type="text" name="daterange" value="12/1/2023 - 12/7/2023" />
               <script>
               $(function() {
                 $('input[name="daterange"]').daterangepicker({
@@ -76,34 +77,102 @@
         <canvas id="myChart"></canvas>
       </div>
       <script>
-        const ctx = document.getElementById('myChart');
-      
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: ['9/10', '9/11', '9/12', '9/13', '9/14', '9/15', '9/16'],
-            datasets: [{
-              label: 'Productos vendidos',
-              data: [8, 4, 3, 5, 2, 3, 10],
-              borderWidth: 1
-            }, {
-              label: 'Ingreso (miles de pesos)',
-              data: [77, 35, 27, 47, 20, 26, 90],
-              borderWidth: 1,
-            }]
-          },
-          options: {
-            elements: {
-              line: {
-                tension: 0.2
+        const query = `
+          query GetCompras {
+            getCompras {
+              Monto
+              direccion {
+                  comuna
+                  direccion
+                  provincia
+                  region
               }
-            },
-            scales: {
-              y: {
-                beginAtZero: true
+              estado
+              productos {
+                  cantidad
+                  nombre
               }
+              usuario
+              _id
+              fecha
             }
+          }`;
+
+        var enumerateDaysBetweenDates = function(startDate, endDate) {
+          var dates = [];
+
+          var currDate = moment(startDate).startOf('day').subtract(1, 'days');
+          var lastDate = moment(endDate).startOf('day').add(1, 'days');
+
+          while(currDate.add(1, 'days').diff(lastDate) < 0) {
+            dates.push(currDate.clone());
           }
+
+          return dates;
+        };
+
+        $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+          fechas = enumerateDaysBetweenDates(picker.startDate, picker.endDate);
+
+          $.ajax({
+            type: "POST",
+            url: 'http://localhost:8888/graphql',
+            contentType: 'application/json',
+            timeout: 15000,
+            data: JSON.stringify({
+                query: query,
+                variables: {}
+            }),
+            success: function (response) {
+              const queryData = response.data.getCompras.filter((compra) => {
+                let fecha = new Date(parseInt(compra.fecha));
+                return (fecha >= picker.startDate) && (fecha <= picker.endDate);
+              })
+              const ventas = new Array(queryData.length).fill(0);
+              const ingresos = new Array(queryData.length).fill(0);
+              queryData.forEach((compra) => {
+                let fecha = moment(parseInt(compra.fecha));
+                let dif = fecha.diff(picker.startDate, 'days');
+                ventas[dif] += 1;
+                ingresos[dif] += compra.Monto / 1000;
+              });
+
+              let chartStatus = Chart.getChart('myChart');
+              if (chartStatus != undefined) {
+                chartStatus.destroy();
+              }
+
+              const ctx = document.getElementById('myChart');
+      
+              new Chart(ctx, {
+                type: 'line',
+                data: {
+                  labels: fechas.map((fecha) => fecha.format('D/M')),
+                  datasets: [{
+                    label: 'Productos vendidos',
+                    data: ventas,
+                    borderWidth: 1
+                  }, {
+                    label: 'Ingresos (miles de pesos)',
+                    data: ingresos,
+                    borderWidth: 1,
+                  }]
+                },
+                options: {
+                  elements: {
+                    line: {
+                      tension: 0.2
+                    }
+                  },
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+            }
+          });
         });
       </script>
     </div>
