@@ -41,7 +41,8 @@
         <a class="nav-link fw-bold"  href="./carrito/index.html"><i class="bi bi-cart2"></i> Carrito (<span id="numero-products">0</span>)</a>
 
 			  <li class="nav-item">
-				<a class="nav-link" href="login/index.html">Iniciar Sesión</a>
+          <a class="nav-link" onclick="Cerrarsesion()">Cerrar Sesión</a>
+
 			  </li>
 			</ul>
 		  </div>
@@ -90,10 +91,7 @@
   query GetCompras {
   getCompras {
     estado
-    productos {
-      cantidad
-      nombre
-    }
+    _id
     usuario
   }
 }
@@ -115,13 +113,8 @@ $.ajax({
     });
 
     function elementoAHtml(elemento) {
-        // Construir la lista de productos como una cadena HTML
-        var productosHtml = elemento.productos.map(function (producto) {
-            return `<li>${producto.nombre} x${producto.cantidad}</li>`;
-        }).join('');
-
-        // Construir el bloque HTML completo
-        var html = `
+        if(elemento.estado==="Cancelado"){
+          var html = `
         <div class="container max-width-sm flex-fill" style="margin-top: 50px;">
             <div class="card">
                 <div class="row g-0">
@@ -131,14 +124,36 @@ $.ajax({
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Pedido N° ${elemento.usuario}</h5>
-                            <ul>
-                                ${productosHtml}
-                            </ul>
+                            <p class="card-text">
+                                Estado: <span class="text-warning">${elemento.estado}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-body-secondary d-flex justify-content-end">
+                    <small class="text-body-secondary">
+                        Última actualización: 3 minutos
+                    </small>
+                </div>
+            </div>
+        </div>
+        `;
+        }else{
+          var html = `
+        <div class="container max-width-sm flex-fill" style="margin-top: 50px;">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-md d-flex align-items-end">
+                        <img src="images/png_sushi_1.png" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Pedido N° ${elemento.usuario}</h5>
                             <p class="card-text">
                                 Estado: <span class="text-warning">${elemento.estado}</span>
                             </p>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-danger">Cancelar</button>
+                                <button class="btn btn-danger" onclick="logItemIdCancelado('${elemento._id}')">Cancelar</button>
                             </div>
                         </div>
                     </div>
@@ -151,6 +166,9 @@ $.ajax({
             </div>
         </div>
         `;
+        }
+        // Construir el bloque HTML completo
+        
 
         return html;
     }
@@ -170,5 +188,53 @@ $.ajax({
 
     // Función para convertir un elemento en HTML
     
+</script>
+
+<script>
+  function Cerrarsesion(){
+            window.location.href = "./login/index.html";
+
+          localStorage.clear();
+
+          }
+
+  function logItemIdCancelado(itemId) {
+		var query2 = `
+		mutation UpdateCompra($updateCompraId: ID!, $input: CompraInputUpdate) {
+			updateCompra(id: $updateCompraId, input: $input) {
+			_id
+			}
+		}
+		`;
+
+		var variables2 = {
+		updateCompraId: itemId,
+		input: {
+			estado: "Cancelado"
+		}
+		};
+
+		fetch('http://localhost:8888/graphql', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			query: query2,
+			variables: variables2
+		}),
+		})
+		.then(response => response.json())
+		.then(data => {
+        console.log('Mutation result:', data);
+        // Aquí puedes realizar cualquier acción adicional con los datos si es necesario
+
+        // Luego, realiza el refresh de la página
+        window.location.reload();
+    })
+		.catch(error => console.error('Error:', error));
+
+
+	}
 </script>
 </html>
