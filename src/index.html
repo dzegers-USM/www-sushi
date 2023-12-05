@@ -46,8 +46,8 @@
 
             <ul class="navbar-nav mb-2 mb-lg-0 ml-auto">
               <a class="nav-link fw-bold"  href="./carrito/index.html"><i class="bi bi-cart2"></i> Carrito (<span id="numero-products">0</span>)</a>
-              <li class="nav-item">
-                <a class="nav-link" href="login/index.html">Iniciar Sesión</a>
+              <li class="nav-item" id="navItem">
+                <!-- Contenido generado por JavaScript se agregará aquí -->
               </li>
             </ul>
     
@@ -95,7 +95,30 @@
 
 
       <script src="./carrito/script/carrito.js"></script>
-  
+      <script>
+
+
+        if (localStorage.getItem("misDatos") === null) {
+              // Obtén el elemento li con id "navItem"
+              var navItem = document.getElementById("navItem");
+
+              // Agrega el contenido correspondiente
+              navItem.innerHTML = '<a class="nav-link" href="login/index.html">Iniciar Sesión</a>';
+            } else {
+              // Si hay algo en el localStorage, puedes mostrar el otro contenido o realizar alguna otra acción
+              console.log("Datos almacenados en localStorage");            
+            var navItem = document.getElementById("navItem");
+
+              navItem.innerHTML = '<a class="nav-link" onclick="Cerrarsesion()">Cerrar Sesión</a>';
+            }
+
+            function Cerrarsesion(){
+              window.location.href = "./login/index.html";
+
+            localStorage.clear();
+
+            }
+      </script>
  
 </body>
 

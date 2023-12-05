@@ -86,10 +86,6 @@
                 region
             }
             estado
-            productos {
-                cantidad
-                nombre
-            }
             usuario
             _id
 			fecha
@@ -113,8 +109,8 @@
 			console.log(compras);
 			var accordionContainer = document.getElementById('accordionContainer');
 
-
-				compras.forEach(function (item) {
+			compras.forEach(function (item,index) {
+				console.log(item);
 				var accordionItem = document.createElement('div');
 				accordionItem.className = 'accordion-item';
 
@@ -132,6 +128,8 @@
 				accordionButton.textContent = `Pedido a Direccion: ${item.direccion.direccion}, ${item.direccion.comuna}, ${item.direccion.provincia}`;
 				// Agregar el botón al encabezado del acordeón
 				accordionHeader.appendChild(accordionButton);
+				var accordionId = `accordion${index}`;
+    			var collapseId = `collapse${index}`;
 
 				// Agregar el encabezado del acordeón al documento (supongamos que hay un contenedor con el id 'accordionContainer')
 				var accordionContainer = document.getElementById('accordionContainer');
@@ -156,12 +154,17 @@
 						<div>
 						<button class="btn btn-primary" onclick="logItemId('${item._id}')">Pedido Listo</button>
 						<button class="btn btn-primary" onclick="logItemIdEntregado('${item._id}')">Pedido Entregado</button>
+						
 						</div>
 					</div>
 					</div>
 				</div>
 				`;
+				accordionButton.setAttribute('data-bs-target', `#${collapseId}`);
+    accordionButton.setAttribute('aria-controls', collapseId);
 
+    accordionBody.id = collapseId;
+    accordionBody.setAttribute('data-parent', `#${accordionId}`);
 				// Agrega el cuerpo del acordeón al documento (asumiendo que el contenedor del acordeón tiene el id 'accordionContainer')
 				var accordionContainer = document.getElementById('accordionContainer');
 				accordionContainer.appendChild(accordionBody);
@@ -175,19 +178,7 @@
 
 				accordionContainer.appendChild(accordionItem);
 
-				
-				let lista_productos=item.productos
-				var ulElement = document.getElementById('lista-productos');
-
-				lista_productos.forEach(function (item1) {
-					var liElement = document.createElement('li');
-
-					// Asigna el contenido del <li> con datos del JSON
-					liElement.textContent = item1.nombre + 'x ' + item1.cantidad;
-
-					// Agrega el <li> al <ul>
-					ulElement.appendChild(liElement);
-				})
+			
 
 				});
 
@@ -273,6 +264,10 @@
 
 
 	}
+
+	
+
+	
 
 </script>
 </body>

@@ -51,15 +51,15 @@ function recargarProductosCarrito(){
 
 
         const html = eliminarNumeroUnidadesCero.map(product => {
+            console.log(product);
             return (
                 `
                 <div class="row mt-2 text-center rounded-3 shadow d-flex align-items-center" style="min-height: 100px;">
-                    <div class="col-lg-2 col-md-3 col-12">
-                        <img src="../images/menu${product.index}.webp" class="card-img-top" alt="..." style="max-width: 100%;">
+                    <div class="col-lg-1 col-md-2 col-12">
                     </div>
                     <div class="col-lg-2 col-md-3 col-12 d-flex flex-column align-items-center">
                         <strong>Titulo:</strong>
-                        <p>${product.titulo}</p>
+                        <p>${product.nombre}</p>
                     </div>
                     <div class="col-lg-2 col-md-3 col-12 d-flex flex-column align-items-center">
                         <strong>Cantidad: </strong>

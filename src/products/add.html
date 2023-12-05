@@ -193,8 +193,8 @@
 						variables: variables
 				}),
 				success: function (response) {
-					localStorage.setItem('misDatos', JSON.stringify({Rol:"cliente",id:response.data.addProducto.id}));
-					//window.location.href = "../src/products/add.html";
+            window.location.reload();
+
 				},
 				error: function (error) {
 						console.error('Error en la solicitud AJAX:', error);

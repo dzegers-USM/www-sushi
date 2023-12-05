@@ -116,7 +116,22 @@
 			else{
 				console.log("Correcta");
 				localStorage.setItem('misDatos', JSON.stringify(response.data.login));
-				window.location.href = "../index.html";
+				if(response.data.login.Rol=="admin"){
+					window.location.href = "../admin.html";		
+				}
+				if (response.data.login.Rol=="jefe") {
+					window.location.href = "../dashboard/ventas.html";		
+					
+				}
+				if (response.data.login.Rol=="cajero") {
+					window.location.href = "../caja/index.html";		
+					
+				}
+
+				else{
+					window.location.href = "../index.html";
+				}				
+
 			}
         }
     });
