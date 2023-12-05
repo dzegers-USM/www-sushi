@@ -128,9 +128,10 @@
 					
 				}
 
-				else{
-					window.location.href = "../index.html";
-				}				
+				if (response.data.login.Rol=="cliente") {
+					window.location.href = "../caja/index.html";		
+					
+				}			
 
 			}
         }
